@@ -1,0 +1,91 @@
+\documentclass[twoside,12pt]{report} %taille de la police par défaut, et équations jusitifées à gauche
+\input{packages}     % Ce fichier contient tous les packages nécessaires à la compilation
+\usepackage{fancyhdr}
+
+                    %*************** Headers **************
+\pagestyle{fancy}
+
+% Commande qui redéfinie la façon dont un chapitre sera affiché
+% par la commande \leftmark
+\renewcommand{\chaptermark}[1]{%
+   \markboth{%
+      \slshape% pour écrire en lettres penchées (par exemple)
+      Chapter \thechapter\ : #1%
+   }{}%
+}
+
+% Commande qui redéfinie la façon dont une section sera affichée
+% par la commande \rightmark
+\renewcommand{\sectionmark}[1]{%
+   \markright{%
+      \slshape% pour écrire en lettres penchées (par exemple)
+      Section\ \thesection\ -- #1%
+   }%
+}
+
+% Pour les en-têtes, L = LEFT, C = CENTER et R = RIGHT.
+% Enfin E = EVEN (pages paires) et O = ODD (pages impaires)
+% Par exemple, l'option RE concerne l'entête des pages
+% paires à droite.
+   
+\fancyhead[L,C,R]{} % On efface tout pour repartir de zéro.
+
+\fancyhead[RO]{\thepage}
+\fancyhead[LO]{\leftmark}
+
+\fancyhead[LE]{\thepage}
+\fancyhead[RE]{\rightmark}
+
+\begin{document}
+\renewcommand{\contentsname}{Contents}	% Nom pour la table des matières
+\renewcommand{\bibname}{Bibliography}	% Nom pour les références bibliographiques
+
+%----------------------------------------------------------------------------------------
+%	PAGE DE GARDE
+%----------------------------------------------------------------------------------------
+\input{frontpage}
+
+
+%----------------------------------------------------------------------------------------
+%	SOMMAIRE
+%----------------------------------------------------------------------------------------
+\tableofcontents  % Imprime le sommaire
+%\cleardoublepage  % pour commencer sur une page impaire
+
+%%
+%\listoffigures  % table des figures
+%\listoftables   % table des tableaux
+%%%----------------------------------------------------------------------------------------
+%%%	PART I 
+%%%----------------------------------------------------------------------------------------
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+\input{introduction}
+%%
+\chapter{Cable Simulation}
+\input{cable_simu}
+
+\chapter{Linking with Sailboat Simulation}
+\input{sailbot_model}
+
+\chapter{Viability of the model}
+%\addcontentsline{toc}{part}{Conclusion}
+%----------------------------------------------------------------------------------------
+%%\appendix
+%\chapter{Appendix 1}
+
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHIE
+%----------------------------------------------------------------------------------------
+%\addcontentsline{toc}{part}{Bibliography}
+%\bibliographystyle{apalike-fr}
+\bibliographystyle{IEEEtran}
+\bibliography{bibliographie}
+\addcontentsline{toc}{part}{Bibliography}
+\nocite{*}
+
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
