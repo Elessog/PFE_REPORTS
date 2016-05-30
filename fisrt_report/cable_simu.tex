@@ -206,3 +206,7 @@ Changing the linear mass or the mass of the last rod have different effect on th
     \label{fig:linmassAngle}
 \end{figure}
 
+To simulate this model there is more than one options, but to not make it diverge tweaking must be made.
+If using a fixed-step size integration (Runge-Kutta,ODE45) the step need to be $\sim\mathcal{O}(10^{-3})$, it is the limit of this method and if the cable endure big acceleration it will diverge.
+
+With an solver with variable step-size (ODE23) the result will be in general more accurate but the computation time became very high needing more than one second to compute one second of simulation.If possible Matlab coder should be used to help improve the computation time.
