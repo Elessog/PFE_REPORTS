@@ -4,7 +4,7 @@ way to get a good cable behaviour.
 \section{SimMechanics\texttrademark ~Multi-Body Engine}
 
 In order to get a model quickly, the use of an easy to made model was done with SimMechanics in Simulink.
-The program allow to easily connect parts and their joints.The SimMechanics engine will be handling the movement of the cable, the effect of forces on it.
+The program allow to easily connect parts and their joints.The SimMechanics engine will be handling the movement of the cable and the effect of forces on it.
 
 \begin{figure}[H]
 \centering
@@ -67,7 +67,7 @@ fluid friction is computed for each direction (the coefficient stay the same for
 \end{figure}
 
 
-More simulation has been made to determine the behaviour of the cable, mainly in a strict line with a constant speed, the cable is towed but has no action on the towing particle for the moment.
+More simulation has been made to determine the behaviour of the cable, mainly the cable is attached on a point following a strict line with a constant speed, the cable is towed but has no action on the towing point for the moment.
 
 \begin{figure}[H]
 \centering
@@ -88,7 +88,7 @@ More simulation has been made to determine the behaviour of the cable, mainly in
 
 In figure~\ref{fig:angleSpeed} is represented the angle of the cable to the vertical depending of the speed of the 
 boat when the system is stabilized. The curve resemble to an inverse curve dependant on the density of the cable.
-It means beyond a certain velocity the cable will be useless due to its depth.
+It means beyond a certain velocity the cable will be useless due to be not enough submerged.
 
 \begin{figure}[H]
 \centering
@@ -184,7 +184,7 @@ there still some left over:
     \label{fig:errorLRod}
 \end{figure}
 
-In the figure~\ref{fig:errorLRod} the error in length reach a maximum near one centimetre for a rod length of four meters\footnote{To see simulations : \href{https://www.youtube.com/watch?v=T7DRGq3E5x8}{Fixed cable video} or \href{https://www.youtube.com/watch?v=V4X0PsgsXZY to see simulations}{Moving cable with a constant speed video}}, this error can is negligible in this case but in some runs if the start is too sharp then, the simulation can diverge.
+In the figure~\ref{fig:errorLRod} the error in length reach a maximum around one centimetre for a rod length of four meters\footnote{To see simulations : \href{https://www.youtube.com/watch?v=T7DRGq3E5x8}{Fixed cable video} or \href{https://www.youtube.com/watch?v=V4X0PsgsXZY to see simulations}{Moving cable with a constant speed video}}, this error can be considered negligible in this case but in some runs if the start is too sharp then, the simulation may diverge.
 
 In this model each rod can have a different length and mass:
 
@@ -195,7 +195,7 @@ In this model each rod can have a different length and mass:
     \label{fig:massForce}
 \end{figure}
 
-In figure~\ref{fig:massForce} are represented the reaction of the cable on the boat once stabilized and depending of the mass of the last rod. The horizontal force is constant over mass, this is logical as when stabilized mass does not appear in the horizontal part of the equation \eqref{equ_Stab}. And as for the vertical reaction it vary linearly with the mass,thus corresponding to the precedent equation on the z axis.
+In figure~\ref{fig:massForce} is represented the force of the cable on the boat once stabilized and depending of the mass of the last rod. The horizontal force is constant over mass, this is logical as when stabilized mass does not appear in the horizontal part of the equation \eqref{equ_Stab}. And as for the vertical reaction it vary linearly with the mass,thus corresponding to the precedent equation on the z axis.
 
 Changing the linear mass or the mass of the last rod have different effect on the final angle of the cable(see~\ref{fig:linmassAngle}).
 
