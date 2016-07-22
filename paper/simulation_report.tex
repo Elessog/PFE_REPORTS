@@ -1,0 +1,97 @@
+\documentclass[twoside,12pt]{report} %taille de la police par défaut, et équations jusitifées à gauche
+\input{packages}     % Ce fichier contient tous les packages nécessaires à la compilation
+\usepackage{fancyhdr}
+
+                    %*************** Headers **************
+\pagestyle{fancy}
+
+% Commande qui redéfinie la façon dont un chapitre sera affiché
+% par la commande \leftmark
+\renewcommand{\chaptermark}[1]{%
+   \markboth{%
+      \slshape% pour écrire en lettres penchées (par exemple)
+      Chapter \thechapter\ : #1%
+   }{}%
+}
+
+% Commande qui redéfinie la façon dont une section sera affichée
+% par la commande \rightmark
+\renewcommand{\sectionmark}[1]{%
+   \markright{%
+      \slshape% pour écrire en lettres penchées (par exemple)
+      Section\ \thesection\ -- #1%
+   }%
+}
+
+% Pour les en-têtes, L = LEFT, C = CENTER et R = RIGHT.
+% Enfin E = EVEN (pages paires) et O = ODD (pages impaires)
+% Par exemple, l'option RE concerne l'entête des pages
+% paires à droite.
+   
+\fancyhead[L,C,R]{} % On efface tout pour repartir de zéro.
+
+\fancyhead[RO]{\thepage}
+\fancyhead[LO]{\leftmark}
+
+\fancyhead[LE]{\thepage}
+\fancyhead[RE]{\rightmark}
+
+\begin{document}
+\renewcommand{\contentsname}{Contents}	% Nom pour la table des matières
+\renewcommand{\bibname}{Bibliography}	% Nom pour les références bibliographiques
+
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+
+Marine Research Platform \r{A}land Sailing Robots is a project at \r{A}land University of Applied  Sciences, with the goal to develop a mobile marine research platform using wind and solar energy. The platform will be evaluated for marine measurements and monitoring of harbor porpoise.
+
+Monitoring of harbor porpoise, Phocoena phocoena, is often performed with Passive Acoustic Monitoring (PAM). To reach a sufficient depth to increase signaltonoise ratio hydrophnoes need to be towed on cable after the boat. The planned platform for towing a cable is a small autonomous sailboat at approximately 4 m length overall. This paper evaluates the possibility to tow a cable using such a platform.
+   
+Simulations of towing a cable have been performed. The dynamic model is described and evaluated. Test sailings with a boat similar to the planned platform towing a cable with a pressure sensor have been performed. Data from these tests are presented and compared to simulations. The ability of the model to capture the real behaviour is evaluated. The feasibility and limits of cable towing with a small autonomous sailboat are discussed.
+   
+
+%----------------------------------------------------------------------------------------
+%	SOMMAIRE
+%----------------------------------------------------------------------------------------
+\tableofcontents  % Imprime le sommaire
+%\cleardoublepage  % pour commencer sur une page impaire
+
+%%
+%\listoffigures  % table des figures
+%\listoftables   % table des tableaux
+%%%----------------------------------------------------------------------------------------
+%%%	PART I 
+%%%----------------------------------------------------------------------------------------
+\chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
+\input{introduction}
+%%
+\chapter{Cable Simulation}
+\input{cable_simu}
+
+\chapter{Linking with Sailboat Simulation}
+\input{sailbot_model}
+
+\chapter{Viability of the model}
+\input{viability_model}
+%\addcontentsline{toc}{part}{Conclusion}
+%----------------------------------------------------------------------------------------
+%%\appendix
+%\chapter{Appendix 1}
+
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHIE
+%----------------------------------------------------------------------------------------
+%\addcontentsline{toc}{part}{Bibliography}
+%\bibliographystyle{apalike-fr}
+\bibliographystyle{IEEEtran}
+\bibliography{bibliographie}
+\addcontentsline{toc}{part}{Bibliography}
+\nocite{*}
+
+
+%----------------------------------------------------------------------------------------
+
+\end{document}
