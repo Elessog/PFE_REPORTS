@@ -30,6 +30,19 @@ The stabilization technique is a PID method therefore it depends on coefficient 
 Johansen proposes three scenarios for this model, a free cable, a fixed-free scenario where one side of the cable is attached to a point and the last one is a fixed-fixed where both side are attached to points.
 The model interesting for the modelling of the sailboat towing a cable is the fixed-free scenario where the attachment point is the boat.
 
+
+The external forces acting on each of the rods of the cable model are the gravitational force ($\vec{P}$) and the fluid friction ($\vec{f}_{fluid}$) and the Archimedes principle ($\vec{\Pi}$), each rod is considered a cylinder :
+
+\begin{align}
+\begin{split}
+\vec{P} &= m \vec{g}  \\
+\vec{f}_{fluid} &= -C_D S \dfrac{\rho \vec{v_{cable}}}{2} \\
+\vec{\Pi} &= - \rho \pi L r^2 \vec{g} \label{equ_archi}
+\end{split}
+\end{align}
+
+
+In~\ref{equ_archi} $\vec{v_{cable}}$ is the velocity of the rod, $S$  its surface and $C_D$ the drag coefficient for a cylinder, $\rho$ the density of the fluid, $r$ is the radius of the cable , $L$ the length of the rod.
 \begin{figure}[H]
 \centering
     \begin{minipage}[b]{0.4\textwidth}
@@ -47,7 +60,10 @@ The model interesting for the modelling of the sailboat towing a cable is the fi
     \end{minipage}
 \end{figure}
 
-By doing simulation with this model, the profile of the angle of the cable over speed is the same as in the Simulink model and the same can be done for the reaction of the cable on the boat, an constant for the vertical reaction and a linear decrease for the horizontal reaction dependant on the fluid friction force.
+
+In figure~\ref{fig:angleIndSpeed} is represented the angle of the cable to the vertical depending of the speed of the boat when the system is stabilized. The curve follow an inverse curve.
+It means beyond a certain velocity the cable will be useless due to be not enough submerged and horizontal.
+The reaction of the cable on the boat, an constant for the vertical reaction and a linear decrease for the horizontal reaction dependant on the fluid friction force.
 
 This model include a tolerance to errors which are resolved by the Baumgarte stabilisation technique but 
 there still some left over:
@@ -60,9 +76,9 @@ there still some left over:
     \label{fig:errorLRod}
 \end{figure}
 
-In the figure~\ref{fig:errorLRod} the error in length reach a maximum around one centimetre for a rod length of four meters\footnote{To see simulations : \href{https://www.youtube.com/watch?v=T7DRGq3E5x8}{Fixed cable video} or \href{https://www.youtube.com/watch?v=V4X0PsgsXZY to see simulations}{Moving cable with a constant speed video}}, this error can be considered negligible in this case but in some runs if the start is too sharp then, the simulation may diverge.
+In the figure~\ref{fig:errorLRod} the error in length reach a maximum around one centimetre for a rod length of four meters\footnote{To see simulations : \href{https://www.youtube.com/watch?v=T7DRGq3E5x8}{Fixed cable video} or \href{https://www.youtube.com/watch?v=V4X0PsgsXZY to see simulations}{Moving cable with a constant speed video}}, this error can be considered negligible in this case but in some runs if the start is too sharp then, the simulation may diverge.\\
 
-In this model each rod can have a different length and mass:
+In this model each rod can have a different length and mass and can be changed to match different sensor mass:
 
 \begin{figure}[H]
 \centering
@@ -71,9 +87,15 @@ In this model each rod can have a different length and mass:
     \label{fig:massForce}
 \end{figure}
 
-In figure~\ref{fig:massForce} is represented the force of the cable on the boat once stabilized and depending of the mass of the last rod. The horizontal force is constant over mass, this is logical as when stabilized mass does not appear in the horizontal part of the equation \eqref{equ_Stab}. And as for the vertical reaction it vary linearly with the mass,thus corresponding to the precedent equation on the z axis.
+\begin{equation}
+ \vec{0} = \vec{f}_{cable/boat}+\vec{f}_{fluid}+\vec{P}+\vec{\Pi}\\
+ \label{equ_Stab}
+\end{equation}
 
-Changing the linear mass or the mass of the last rod have different effect on the final angle of the cable(see~\ref{fig:linmassAngle}).
+
+In figure~\ref{fig:massForce} is represented the force of the cable on the boat once stabilized and depending of the mass of the last rod. The horizontal force is constant over mass, this is logical as when stabilized mass does not appear in the horizontal part of the equation \eqref{equ_Stab}. And as for the vertical reaction it vary linearly with the mass,thus corresponding to the precedent equation on the vertical axis.
+
+Changing the linear mass or the mass of the last rod have different effect on the final angle of the cable(see~\ref{fig:linmassAngle}), the errors can be reduced by changing the coefficient of the Baugmarte stabilization but it will influence on the computation time when using a variable-step solver.
 
 \begin{figure}[H]
 \centering
@@ -83,6 +105,6 @@ Changing the linear mass or the mass of the last rod have different effect on th
 \end{figure}
 
 To simulate this model there is more than one options, but to not make it diverge tweaking must be made.
-If using a fixed-step size integration (Runge-Kutta,ODE45) the step need to be $\sim\mathcal{O}(10^{-3})$, it is the limit of this method and if the cable endure big acceleration it will diverge.
+If using a fixed-step size integration (Runge-Kutta) the step need to be $\sim\mathcal{O}(10^{-3})$, it is the limit of this method and if the cable endure too big acceleration it will diverge.
 
-With an solver with variable step-size (ODE23) the result will be in general more accurate but the computation time became very high needing more than one second to compute one second of simulation.If possible Matlab coder should be used to help improve the computation time.
+With an solver with variable step-size (ODE23 or ODE15) the result will be in general more accurate but the computation time became very high needing more than one second to compute one second of simulation.If possible Matlab coder should be used to help improve the computation time.
