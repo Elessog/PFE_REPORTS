@@ -3,6 +3,18 @@
 The model of the sailboat come from~\cite{Melin2016} a modified version of the model in~\cite{LeBars2013}.
 
 
+\begin{figure}[H]
+\centering
+    \includegraphics[scale=0.6,angle=0]{drawing_boat}
+    \caption{Representation of the state vector variable and the inputs $\delta_s$ and $\delta_r$ and representation of the true wind and apparent wind.}
+    \label{fig:drawing_boat_ink}
+\end{figure}
+
+The states boat is represented by different variables $x$ and $y$ for the position of the boat, a heading $\theta$ 
+and an angular speed $\omega$.
+The model is non-holonomic such as the boat will always go in the direction $\theta$ (minus the wind drift) therefore the speed $v$ is defined in the boat frame as for the input $[ \delta_s , \delta_r]$, where $\delta_r$ is the rudder angle and $\delta_s$ is the angle of the sail (which is proportional to the sheet length).
+
+
 \begin{equation}
 \begin{bmatrix}
 \dot{x}\\
@@ -20,9 +32,6 @@ v \sin(\theta)+p_1 a_{tw} \sin(\psi_{tw})\\
 \end{equation}
 
 
-The states boat is represented by different variables $x$ and $y$ for the position of the boat, a heading $\theta$ 
-and an angular speed $\omega$.
-The model is non-holonomic such as the boat will always go in the direction $\theta$ (minus the wind drift) therefore the speed $v$ is defined in the boat frame as for the input $[ \delta_s , \delta_r]$, where $\delta_r$ is the rudder angle and $\delta_s$ is the angle of the sail (which is proportional to the sheet length).
 
 
 $g_s$ and $g_r$ are the force on the sail and on the rudder:
@@ -31,7 +40,9 @@ g_s &= p_4 a_{aw} \sin(\delta_s - \psi_{aw})\\
 g_r &= p_5 v^2 \sin(\delta_r)
 \end{align}
 
-The force on the sail depend on the apparent wind:
+
+
+The force on the sail depend on the apparent wind (~\ref{fig:drawing_boat_ink}):
 
 \begin{equation}
 \bf{W}_{c,aw}= \begin{bmatrix}
@@ -51,7 +62,9 @@ a_{aw}\\
 \end{equation}
 
 $a_{tw}$ is the true wind speed and $\psi_{tw}$ its direction in the world frame
-and $a_{aw}$ is the apparent wind speed on the boat and $\psi_{aw}$ the direction of the apparent wind in the boat frame.\\
+and $a_{aw}$ is the apparent wind speed on the boat and $\psi_{aw}$ the direction of the apparent wind in the boat frame.\\\\
+
+
 \begin{minipage}{\linewidth}
 \centering
 \captionof{table}{Parameters correspondance} \label{tab:title2} 
@@ -127,8 +140,7 @@ drag the boat on the same direction therefore the computation of friction :
 
 When $\alpha_v = \theta \pmod{\pi}$ the boat goes in the same direction of the drift therefore the friction is equal to the tangential friction $p_2$. But when $\alpha_v -\theta =\pm \pi/2$ the friction created by the drift is orthogonal to the boat so the friction is at its maximum.
 
-But the cable does not always make the boat drift, if the cable pull in the same direction of the boat, the force 
-will directly impact the speed  $v$ of the boat (without making it drift). The effect of the cable is distributed between $\dot{v}$ and $\dot{v_c}$ depending on the difference $\alpha_c -\theta$.
+But the cable does not always make the boat drift, if the cable pull in the same direction of the boat, the force will directly impact the speed  $v$ of the boat (without making it drift). The effect of the cable is distributed between $\dot{v}$ and $\dot{v_c}$ depending on the difference $\alpha_c -\theta$. This allows to take into account the drift caused by the cable but doesn't entirely do it when the direction is opposite.
 
 \paragraph*{Changing Application point of the force from the cable}
 ~\\

@@ -76,15 +76,25 @@ there still some left over:
     \label{fig:errorLRod}
 \end{figure}
 
-In the figure~\ref{fig:errorLRod} the error in length reach a maximum around one centimetre for a rod length of four meters\footnote{To see simulations : \href{https://www.youtube.com/watch?v=T7DRGq3E5x8}{Fixed cable video} or \href{https://www.youtube.com/watch?v=V4X0PsgsXZY to see simulations}{Moving cable with a constant speed video}}, this error can be considered negligible in this case but in some runs if the start is too sharp then, the simulation may diverge.\\
+In the figure~\ref{fig:errorLRod} the error in length reach a maximum around one centimetre for a rod length of four meters\footnote{To see simulations : \href{https://www.youtube.com/watch?v=T7DRGq3E5x8}{Fixed cable video} or \href{https://www.youtube.com/watch?v=V4X0PsgsXZY to see simulations}{Moving cable with a constant speed video}}, this error ($\pm 0.25 \% $) can be considered negligible in this case but in some runs if the start is too sharp (cable not moving but with the fixed point with big speed and acceleration) then, the simulation may diverge.\\
 
 In this model each rod can have a different length and mass and can be changed to match different sensor mass:
 
 \begin{figure}[H]
 \centering
-    \includegraphics[scale=0.5,angle=0]{inde_cable_force_mass.png}
+    \begin{minipage}[b]{0.4\textwidth}
+    \centering
+    \includegraphics[scale=0.45,angle=0]{inde_cable_force_mass.png}
     \caption{Variation of reaction force of cable on boat depending on mass of last rod.}
     \label{fig:massForce}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[scale=0.45,angle=0]{inde_cable_angle_linmass.png}
+    \caption{Variation of the angle of the cable depending on the linear mass of the rods.}
+    \label{fig:linmassAngle}
+    \end{minipage}
 \end{figure}
 
 \begin{equation}
@@ -97,12 +107,6 @@ In figure~\ref{fig:massForce} is represented the force of the cable on the boat 
 
 Changing the linear mass or the mass of the last rod have different effect on the final angle of the cable(see~\ref{fig:linmassAngle}), the errors can be reduced by changing the coefficient of the Baugmarte stabilization but it will influence on the computation time when using a variable-step solver.
 
-\begin{figure}[H]
-\centering
-    \includegraphics[scale=0.6,angle=0]{inde_cable_angle_linmass.png}
-    \caption{Variation of the angle of the cable depending on the linear mass of the rods.}
-    \label{fig:linmassAngle}
-\end{figure}
 
 To simulate this model there is more than one options, but to not make it diverge tweaking must be made.
 If using a fixed-step size integration (Runge-Kutta) the step need to be $\sim\mathcal{O}(10^{-3})$, it is the limit of this method and if the cable endure too big acceleration it will diverge.
