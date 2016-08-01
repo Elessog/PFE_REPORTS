@@ -1,49 +1,26 @@
-\documentclass[twoside,11pt]{report} %taille de la police par défaut, et équations jusitifées à gauche
+\documentclass[11pt]{article} %taille de la police par défaut, et équations jusitifées à gauche
 \input{packages}     % Ce fichier contient tous les packages nécessaires à la compilation
-\usepackage{fancyhdr}
 
-                    %*************** Headers **************
-\pagestyle{fancy}
-
-% Commande qui redéfinie la façon dont un chapitre sera affiché
-% par la commande \leftmark
-\renewcommand{\chaptermark}[1]{%
-   \markboth{%
-      \slshape% pour écrire en lettres penchées (par exemple)
-      Chapter \thechapter\ : #1%
-   }{}%
+\title{ Cable Towing with an Autonomous Sailboat }
+\author{Elouan Autret$^{1}$,Anna Friebe$^{2}$, Ronny Eriksson$^{3}$, Kjell Dahl$^{4}$, Mathias Waller$^{5}$\\
+\\
+\normalsize{$^{1}$ ENSTA Bretagne, France, elouan.autret@ensta-bretagne.org}\\
+\normalsize{$^{2}$ Åland University, Finland, anna.friebe@ha.ax}\\
+\normalsize{$^{3}$ Åland University, Finland , ronny.eriksson@ha.ax}\\
+\normalsize{$^{4}$ Åland University, Finland, Kjell.Dahl@ha.ax}\\
+\normalsize{$^{5}$ Åland University, Finland, Matias.Waller@ha.ax}\\
 }
-
-% Commande qui redéfinie la façon dont une section sera affichée
-% par la commande \rightmark
-\renewcommand{\sectionmark}[1]{%
-   \markright{%
-      \slshape% pour écrire en lettres penchées (par exemple)
-      Section\ \thesection\ -- #1%
-   }%
-}
-
-% Pour les en-têtes, L = LEFT, C = CENTER et R = RIGHT.
-% Enfin E = EVEN (pages paires) et O = ODD (pages impaires)
-% Par exemple, l'option RE concerne l'entête des pages
-% paires à droite.
-   
-\fancyhead[L,C,R]{} % On efface tout pour repartir de zéro.
-
-\fancyhead[RO]{\thepage}
-\fancyhead[LO]{\leftmark}
-
-\fancyhead[LE]{\thepage}
-\fancyhead[RE]{\rightmark}
+\date{}
 
 \begin{document}
+
+\maketitle
+
 \renewcommand{\contentsname}{Contents}	% Nom pour la table des matières
 \renewcommand{\bibname}{Bibliography}	% Nom pour les références bibliographiques
 
 
-\chapter*{Abstract}
-\addcontentsline{toc}{chapter}{Abstract}
-
+\section*{Abstract}
 Marine Research Platform \r{A}land Sailing Robots is a project at \r{A}land University of Applied  Sciences, with the goal to develop a mobile marine research platform using wind and solar energy. The platform will be evaluated for marine measurements and monitoring of harbor porpoise.
 
 Monitoring of harbor porpoise, Phocoena phocoena, is often performed with Passive Acoustic Monitoring (PAM). To reach a sufficient depth to increase signaltonoise ratio hydrophnoes need to be towed on cable after the boat. The planned platform for towing a cable is a small autonomous sailboat at approximately 4 m length overall. This paper evaluates the possibility to tow a cable using such a platform.
@@ -54,7 +31,7 @@ Simulations of towing a cable have been performed. The dynamic model is describe
 %----------------------------------------------------------------------------------------
 %	SOMMAIRE
 %----------------------------------------------------------------------------------------
-\tableofcontents  % Imprime le sommaire
+%\tableofcontents  % Imprime le sommaire
 %\cleardoublepage  % pour commencer sur une page impaire
 
 %%
@@ -63,23 +40,24 @@ Simulations of towing a cable have been performed. The dynamic model is describe
 %%%----------------------------------------------------------------------------------------
 %%%	PART I 
 %%%----------------------------------------------------------------------------------------
-\chapter*{Introduction}
+
 \addcontentsline{toc}{chapter}{Introduction}
+\section{Introduction}
 \input{introduction}
 %%
-\chapter{Cable Simulation}
+\section{Cable Simulation}
 \input{cable_simu}
 
-\chapter{Linking with Sailboat Simulation}
+\section{Linking with Sailboat Simulation}
 \input{sailbot_model}
 
-\chapter{Viability of the model}
+\section{Viability of the model}
 \input{viability_model}
 %\addcontentsline{toc}{part}{Conclusion}
 %----------------------------------------------------------------------------------------
 %%\appendix
 %\chapter{Appendix 1}
-
+\section*{Acknowledgement}
 
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHIE

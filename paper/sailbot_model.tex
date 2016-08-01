@@ -1,4 +1,4 @@
-\section{Original Model}
+\subsection{Original Model}
 
 The model of the sailboat come from~\cite{Melin2016} a modified version of the model in~\cite{LeBars2013}.
 
@@ -94,12 +94,12 @@ The goal of this model is to be simple, not to experience the real reaction of a
 to be able to implement a controller for this ship. This kind of reasoning has been successful in the past 
 with this model and others (see~\cite{LeBars2013}~\cite{Melin2016}).
 
-\section{Adding the cable force}
+\subsection{Adding the cable force}
 
 The design of this model originated from the model in this paper~\cite{Jaulin2015} and changed after that.
 This model will separate the cable simulation and the sailboat. Having a cable on the boat, changes its dynamic 
 and the model need to be updated to take into account the new forces applying on the boat.
-\subsection{Modification of this model}
+\subsubsection{Modification of this model}
 \paragraph*{Adding drifting}
 ~\\
 %\vskip1mm
@@ -167,7 +167,7 @@ This mean the cable will often have a breaking effect to the rotation of the boa
 
 In figure~\ref{fig:3wayBoat} is represented the cable \footnote{To see simulation : \href{https://www.youtube.com/watch?v=1nrbdikXr8A}{Simulation of a boat with a cable on it}},and the boat with in red the force of the cable on the boat and the blue arrow is the wind direction.
 
-\subsection{Simulation Results}
+\subsubsection{Simulation Results}
 
 The boat behave differently whereas it have a cable attached or not. The boat is slower and have a longer response time also.
 
