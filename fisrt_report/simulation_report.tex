@@ -36,10 +36,35 @@
 \fancyhead[LE]{\thepage}
 \fancyhead[RE]{\rightmark}
 
+
+
+% Definition of \maketitle
+\makeatletter         
+\def\@maketitle
+{
+ \begin{center}
+  {\Huge \bfseries \sffamily \@title }\\[4ex] 
+  {\Large  \@author}\\[4ex] 
+  \@date\\[8ex]
+ \end{center}
+}
+\makeatother
+
+\title{ Dynamics Modelling of a Boat Towing a Cable at Different Lengths and Depths }
+\author{Elouan Autret$^{1}$\\
+\\
+\normalsize{$^{1}$ ENSTA Bretagne, France, elouan.autret@ensta-bretagne.org}\\\\\\\\\\\\\\\\
+\includegraphics[width = 40mm]{ensta-bretagne.png}
+%\vspace*{\fill}
+}
+\date{August 2016}
+
+
 \begin{document}
 \renewcommand{\contentsname}{Contents}	% Nom pour la table des matières
 \renewcommand{\bibname}{Bibliography}	% Nom pour les références bibliographiques
 
+%\maketitle
 %----------------------------------------------------------------------------------------
 %	PAGE DE GARDE
 %----------------------------------------------------------------------------------------
@@ -71,17 +96,23 @@
 \chapter{Viability of the model}
 \input{viability_model}
 
+\chapter{Simulator}
+\input{easierprog}
+
 
 \chapter{Miscellaneous}
 \input{miscellaneous}
 %\addcontentsline{toc}{part}{Conclusion}
 %----------------------------------------------------------------------------------------
 %\appendix
-\chapter{Appendix 1}
+\chapter*{Appendix 1}
+\addcontentsline{toc}{chapter}{Appendix 1}
 %simulation cable longer
-\chapter{Appendix 2}
+\chapter*{Appendix 2}
+\addcontentsline{toc}{chapter}{Appendix 2}
 %use matlab
-\chapter{Appendix 3}
+\chapter*{Appendix 3}
+\addcontentsline{toc}{chapter}{Appendix 3}
 %use simulator get the info data
 
 
