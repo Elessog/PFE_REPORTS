@@ -3,13 +3,16 @@
 The model of the sailboat come from~\cite{Melin2016} a modified version of the model in~\cite{LeBars2013}.
 
 
+
 \begin{figure}[H]
 \centering
-    \includegraphics[scale=0.3,angle=0]{drawing_boat}
+\psscalebox{0.45 0.45} % Change this value to rescale the drawing.
+{
+\input{state_drawing_boat}
+}
     \caption{Representation of the state vector variable and the inputs $\delta_s$ and $\delta_r$ and representation of the true wind and apparent wind.}
     \label{fig:drawing_boat_ink}
 \end{figure}
-
 
 
 \begin{equation}

@@ -1,0 +1,63 @@
+% \usepackage[usenames,dvipsnames]{pstricks}
+% \usepackage{epsfig}
+% \usepackage{pst-grad} % For gradients
+% \usepackage{pst-plot} % For axes
+% \usepackage[space]{grffile} % For spaces in paths
+% \usepackage{etoolbox} % For spaces in paths
+% \makeatletter % For spaces in paths
+% \patchcmd\Gread@eps{\@inputcheck#1 }{\@inputcheck"#1"\relax}{}{}
+% \makeatother
+% % User Packages:
+% \usepackage{amsmath}
+% \usepackage{amsfonts}
+% \usepackage{amssymb}
+% \usepackage{algorithm}
+% \usepackage{algorithmic}
+\psscalebox{1.0 1.0} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-4.3745584)(16.869757,4.3745584)
+\definecolor{colour0}{rgb}{0.99607843,0.16470589,0.16470589}
+\definecolor{colour5}{rgb}{0.99607843,0.99607843,0.99607843}
+\definecolor{colour1}{rgb}{0.65882355,0.99607843,0.35686275}
+\definecolor{colour2}{rgb}{0.9490196,0.5764706,0.5921569}
+\definecolor{colour3}{rgb}{0.79607844,0.7607843,0.24705882}
+\definecolor{colour4}{rgb}{0.6627451,0.25490198,0.63529414}
+\psellipse[linecolor=black, linewidth=0.04, fillstyle=vlines, hatchwidth=0.02, hatchangle=22.0, hatchsep=0.4, hatchcolor=colour0, dimen=outer](8.260985,2.9066384)(1.6181818,1.2121212)
+\psframe[linecolor=colour5, linewidth=0.04, fillstyle=solid,fillcolor=colour5, dimen=outer](9.34314,3.2042816)(7.0468435,2.4931705)
+\rput{-33.63478}(1.1742575,4.476236){\psellipse[linecolor=black, linewidth=0.012, linestyle=dashed, dash=0.17638889cm 0.10583334cm, dimen=outer](7.99201,0.29558465)(3.9300253,4.396972)}
+\rput{-330.17743}(-0.2676209,-1.0106432){\psellipse[linecolor=black, linewidth=0.04, fillstyle=solid,fillcolor=colour1, dimen=outer](1.7638229,-1.0078198)(1.5165052,1.3591782)}
+\rput{18.753927}(0.18432017,-4.216627){\psellipse[linecolor=black, linewidth=0.04, fillstyle=solid,fillcolor=colour2, dimen=outer](12.859304,-1.5502272)(1.0433294,0.39234522)}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{<->}(13.57026,-2.7865503)(13.243397,-1.8878121)
+\rput[bl](11.606252,-3.120998){Remote PC Control}
+\rput[bl](12.480103,-1.6929344){Xbee}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{<->}(12.382069,-1.6256695)(8.717011,-1.6906502)
+\rput[bl](0.0,-2.9405355){\textbf{TCP/IP Communication}}
+\rput[bl](0.67349714,-1.7631297){WebServer}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{<->}(2.6210194,-1.6468747)(5.202069,-1.6345583)
+\rput[bl](12.029757,-0.96005267){\textbf{Serial Port Communication}}
+\rput[bl](5.7583647,-1.7138176){Main Program}
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](6.9620686,-1.5145583){1.78}
+\rput[bl](7.382758,-4.3745584){\textit{Computing Unit}}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(8.676984,0.15256032)(8.280845,-0.3692216)
+\rput[bl](7.965766,0.24916434){{\small GPSD Daemon}}
+\psline[linecolor=colour3, linewidth=0.04, linestyle=dashed, dash=0.17638889cm 0.10583334cm, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(9.624621,2.203608)(11.345834,0.5793657)(8.570076,-0.7782101)
+\psline[linecolor=colour3, linewidth=0.04, linestyle=dashed, dash=0.17638889cm 0.10583334cm, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{<->}(8.667046,-0.9963919)(11.903409,0.5793657)(9.806439,2.6036081)
+\psline[linecolor=colour3, linewidth=0.04, linestyle=dashed, dash=0.17638889cm 0.10583334cm, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(8.630682,1.7308809)(8.71553,0.61572933)
+\rput[bl](1.1640154,-0.4024525){Simulator}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{<->}(6.679167,2.7005777)(1.7943184,0.082395986)
+\rput{-44.561977}(1.2363315,7.8739686){\rput[bl](10.226605,2.428315){\small{Motor Controller}}}
+\rput{-41.194386}(1.1743914,6.7127047){\rput[bl](9.517955,1.7939111){\small{Windsensor}}}
+\rput{-85.93802}(6.6179576,10.209451){\rput[bl](8.789066,1.5524297){\small{GPS}}}
+\rput{77.81638}(5.4495893,-6.1740537){\rput[bl](6.54947,0.28886062){\scriptsize{Pressure Sensor}}}
+\rput{76.49165}(6.109742,-6.8746214){\rput[bl](7.415733,0.43835557){\small{Compass}}}
+\psline[linecolor=colour4, linewidth=0.06, linestyle=dotted, dotsep=0.10583334cm, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(7.2157326,2.2028)(6.672029,-0.2105333)
+\psline[linecolor=colour4, linewidth=0.06, linestyle=dotted, dotsep=0.10583334cm, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(7.8335104,1.9583555)(7.279436,-0.32016295)
+\psline[linecolor=colour4, linewidth=0.06, linestyle=dotted, dotsep=0.10583334cm, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(16.157822,1.8314756)(12.598345,1.8346128)
+\psline[linecolor=colour3, linewidth=0.04, linestyle=dashed, dash=0.17638889cm 0.10583334cm, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(16.090996,3.0593288)(12.557545,3.0620859)
+\rput[bl](13.239436,3.2190964){Virtual Serial Port}
+\rput[bl](13.491288,1.9450222){Shared Memory}
+\rput[bl](7.216541,2.6736417){Side Program}
+\psellipse[linecolor=black, linewidth=0.04, fillstyle=vlines, hatchwidth=0.02, hatchangle=22.0, hatchsep=0.4, hatchcolor=colour0, dimen=outer](7.0246215,-0.16608886)(0.7777778,0.36296296)
+\end{pspicture}
+}
+

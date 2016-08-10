@@ -1,0 +1,52 @@
+% \usepackage[usenames,dvipsnames]{pstricks}
+% \usepackage{epsfig}
+% \usepackage{pst-grad} % For gradients
+% \usepackage{pst-plot} % For axes
+% \usepackage[space]{grffile} % For spaces in paths
+% \usepackage{etoolbox} % For spaces in paths
+% \makeatletter % For spaces in paths
+% \patchcmd\Gread@eps{\@inputcheck#1 }{\@inputcheck"#1"\relax}{}{}
+% \makeatother
+% % User Packages:
+% \usepackage{amsmath}
+% \usepackage{amsfonts}
+% \usepackage{amssymb}
+% \usepackage{algorithm}
+% \usepackage{algorithmic}
+\psscalebox{1.0 1.0} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-4.398276)(16.057339,4.398276)
+\definecolor{colour0}{rgb}{0.65882355,0.99607843,0.35686275}
+\definecolor{colour1}{rgb}{0.42352942,0.8784314,0.9764706}
+\definecolor{colour2}{rgb}{0.9490196,0.5764706,0.5921569}
+\psellipse[linecolor=black, linewidth=0.012, linestyle=dashed, dash=0.17638889cm 0.10583334cm, dimen=outer](7.031034,-1.3086208)(3.0275862,2.689655)
+\psellipse[linecolor=black, linewidth=0.04, fillstyle=solid,fillcolor=colour0, dimen=outer](1.854732,-1.6375979)(1.583172,0.8379661)
+\rput{6.7314534}(0.37274778,-0.6346489){\psellipse[linecolor=black, linewidth=0.04, fillstyle=solid,fillcolor=colour1, dimen=outer](5.5820684,2.8517241)(4.02,1.03)}
+\rput{18.753927}(0.70229614,-3.9860935){\psellipse[linecolor=black, linewidth=0.04, fillstyle=solid,fillcolor=colour2, dimen=outer](12.42028,0.13337229)(1.8921099,2.7825892)}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{<->}(13.57026,-2.8102677)(13.243397,-1.9115297)
+\rput[bl](11.606252,-3.1447155){Remote PC Control}
+\rput[bl](12.480103,-1.7166519){Xbee}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{<->}(12.382069,-1.649387)(8.717011,-1.7143679)
+\rput[bl](0.0,-2.964253){\textbf{TCP/IP Communication}}
+\rput[bl](0.67349714,-1.7868472){WebServer}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{<->}(2.6210194,-1.6705922)(5.202069,-1.6582758)
+\rput[bl](4.0903444,4.1182756){\textbf{I$^2$C Communication}}
+\rput[bl](11.2173395,2.923399){\textbf{Serial Port Communication}}
+\rput[bl](3.1420686,2.6217241){Pressure Sensor}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(3.8220687,2.221724)(5.8420687,-0.17827587)
+\rput[bl](11.319171,-0.44599622){Motor Controllor}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{<->}(11.245878,-0.48970443)(8.711275,-1.4573234)
+\rput[bl](11.18373,0.52905947){Windsensor}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(11.224926,0.5702956)(8.577307,-0.78335524)
+\rput[bl](7.4620686,3.0017242){Compass}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(7.5820684,2.7417243)(7.3420687,0.24172413)
+\rput[bl](11.263345,1.9251283){GPS}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(11.182069,1.9017241)(9.023218,0.5121456)
+\rput[bl](5.8620687,-1.6782758){Main Program}
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](6.9620686,-1.5382758){1.78}
+\rput[bl](7.382758,-4.398276){\textit{Computing Unit}}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(8.676984,0.12884279)(8.280845,-0.39293915)
+\rput[bl](7.965766,0.2254468){{\small GPSD Daemon}}
+\end{pspicture}
+}
+

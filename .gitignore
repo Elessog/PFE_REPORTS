@@ -18,3 +18,9 @@
 *~
 *.dvi
 *.pyg
+*.acn
+*.acr
+*.alg
+*.glg
+*.gls
+

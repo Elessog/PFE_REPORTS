@@ -59,6 +59,9 @@
 }
 \date{August 2016}
 
+\makeglossaries      % donne l'ordre de créer le glossaire
+\include{glossary}  % ce fichier contient les entrées du glossaire
+
 
 \begin{document}
 \renewcommand{\contentsname}{Contents}	% Nom pour la table des matières
@@ -78,14 +81,25 @@
 %\cleardoublepage  % pour commencer sur une page impaire
 
 %%
-%\listoffigures  % table des figures
-%\listoftables   % table des tableaux
+\listoffigures  % table des figures
+\listoftables   % table des tableaux
+
+%----------------------------------------------------------------------------------------
+%	GLOSSAIRE
+%----------------------------------------------------------------------------------------
+{
+\printglossaries
+\addcontentsline{toc}{chapter}{Glossary}
+}
 %%%----------------------------------------------------------------------------------------
 %%%	PART I 
 %%%----------------------------------------------------------------------------------------
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 \input{introduction}
+
+\chapter{State Of the Art}
+\input{stateoftheart}
 %%
 \chapter{Cable Simulation}
 \input{cable_simu}

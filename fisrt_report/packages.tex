@@ -17,7 +17,9 @@
         pdfauthor={E. Autret},
         pdfkeywords={Sailboat; simulation;towing;autonomous;cable},
         pdftitle={Dynamic modelling of a cable},
-        pdfsubject={yours !}] {hyperref}
+        pdfsubject={yours !}
+unicode,pdfencoding=auto] {hyperref}
+
 \usepackage{url}
 \usepackage[utf8]{inputenc} % lettres accentuées
 \usepackage[T1]{fontenc}    % Use 8-bit encoding that has 256 glyphs
@@ -76,3 +78,16 @@
 \usepackage{enumitem}
 \usepackage{tabularx}
 \usepackage{eso-pic}
+
+\usepackage[usenames,dvipsnames]{pstricks}
+\usepackage{epsfig}
+\usepackage{pst-grad} % For gradients
+\usepackage{pst-plot} % For axes
+\usepackage[space]{grffile} % For spaces in paths
+\usepackage{etoolbox} % For spaces in paths
+\makeatletter % For spaces in paths
+\patchcmd\Gread@eps{\@inputcheck#1 }{\@inputcheck"#1"\relax}{}{}
+\makeatother
+
+
+\usepackage[acronym]{glossaries}

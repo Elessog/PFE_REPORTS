@@ -1,5 +1,32 @@
 
 
-\section{Simulator}
+\section{Simulator for the C++ program}
 
-fisrt design complicated thing so aply the simulator to the output 
+The first design of the code was too complicated and old to be able to simply implement the simulation in
+the code itself, therefore the easiest way to do it was to pre-empt the connection to the sensor;
+
+\begin{figure}[H]
+\centering
+\psscalebox{0.5 0.5} % Change this value to rescale the drawing.
+{
+\input{model_com}
+}
+\caption{Model of the boat.}
+\label{fig:model_boat_}
+\end{figure}
+
+The data comes, from and to the main program regulating the boat via three different mean.
+The sensor data comes from serial ports \gls{RS232} and \gls{i2c} communication \gls{GPS}
+
+
+
+\begin{figure}[H]
+\centering
+\psscalebox{0.5 0.5} % Change this value to rescale the drawing.
+{
+\input{model_boat_plus_sim}
+}
+\caption{Model of the boat with simulator.}
+\label{fig:model_boat_sim}
+\end{figure}
+
