@@ -19,6 +19,41 @@ and constant heading, the equilibrium state is researched.
 \end{figure}
 
 
+$\vec{w}$ is the gravitational force and $\vec{\Pi}$ represent the Archimedes principle, $\vec{F_{fluid}}$ is the resistance due to the fluid and $\vec{T}$ is the force of the base on the cable. $\vec{v_c}$ is the speed of the base (e.g.\ the boat). If the system is at equilibrium then the speed of the cable is the same as the speed of the base. 
+
+%\begin{align}
+\begin{equation}
+ \vec{0} = \vec{T}+\vec{F_{fluide}}+\vec{w}+\vec{\Pi}\\
+ \label{equ_Stab_1}
+\end{equation}
+
+
+Where :
+
+
+{
+\begin{align}
+\centering
+\vec{F_{fluide}} &= -C_D (2 r l) \rho \frac{ \|v_c\|}{2} \cdot \vec{v_c} \\
+\vec{w} &= m \cdot \vec{g} \\
+\vec{\Pi} &= - \rho \pi r^2 l \cdot \vec{g}
+\end{align}
+}
+If~\ref{equ_Stab_1} is projected on $\vec{u_{\theta}}$ to get rid off the unknown force $\vec{T}$ the result is:
+
+\begin{equation}
+ 0 = (m g - l \rho \pi r^2 g) \cdot \sin(\theta)-C_D l 2 r \rho \frac{v_c^2}{2} \cdot \cos(\theta)\\
+ \label{equ_Stab_2}
+\end{equation}
+
+Thus the angle $\theta$ is computable :
+
+\begin{equation}
+ \theta = \arctan(\frac{C_D l 2 r \rho}{2 g \cdot (m - l \rho \pi r^2)} \cdot v_c^2)\\
+ \label{equ_theta_1}
+ \end{equation}
+ 
+ 
 \section{SimMechanics\texttrademark ~Multi-Body Engine}
 
 In order to get a model quickly, the use of an easy to made model was done with SimMechanics in Simulink.

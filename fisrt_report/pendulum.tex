@@ -13,12 +13,13 @@
 % \usepackage{amssymb}
 % \usepackage{algorithm}
 % \usepackage{algorithmic}
-% 
 \psscalebox{1.0 1.0} % Change this value to rescale the drawing.
 {
 \begin{pspicture}(0,-2.5449028)(7.8730617,2.5449028)
 \definecolor{colour0}{rgb}{0.015686275,0.17254902,0.6666667}
-\definecolor{colour1}{rgb}{0.19215687,0.80784315,0.07058824}
+\definecolor{colour1}{rgb}{1.0,0.25882354,0.8862745}
+\definecolor{colour2}{rgb}{0.19215687,0.80784315,0.07058824}
+\definecolor{colour3}{rgb}{0.627451,0.627451,0.627451}
 \psline[linecolor=black, linewidth=0.04](3.9089148,1.8969576)(5.087519,1.8969576)
 \psline[linecolor=black, linewidth=0.04](4.3086305,1.8825132)(2.4941862,-0.9530424)
 \psline[linecolor=black, linewidth=0.02, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(2.4910214,-0.9562069)(2.1720343,-1.4675993)
@@ -26,9 +27,8 @@
 \psline[linecolor=red, linewidth=0.03, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(2.4634843,-0.9416389)(0.6248878,-0.9416389)
 \psline[linecolor=black, linewidth=0.03, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(2.4712036,-0.94421196)(2.4712036,-2.5091243)
 \psline[linecolor=colour0, linewidth=0.03, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(2.4749463,-0.9205862)(2.4819639,0.6092383)
-\psarc[linecolor=black, linewidth=0.03, linestyle=dashed, dash=0.17638889cm 0.10583334cm, dimen=outer, showpoints=true, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{<-}(4.3055897,1.8829225){0.5368421}{239.0}{360.0}
-\pscircle[linecolor=colour1, linewidth=0.04, fillstyle=solid,fillcolor=colour1, dimen=outer](2.4808948,-0.9663335){0.14177215}
-\rput[bl](5.136343,1.3518596){$\theta$}
+\psarc[linecolor=black, linewidth=0.03, linestyle=dashed, dash=0.17638889cm 0.10583334cm, dimen=outer, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{<-}(4.3346877,1.8977591){0.5368421}{235.0}{270.0}
+\rput[bl](4.7488427,1.1018596){$\theta$}
 \rput[bl](2.9794803,-1.2677482){$\vec{u_{\theta}}$}
 \rput[bl](1.7402645,-1.4873561){$\vec{u_{r}}$}
 \rput[bl](0.0,-0.8332749){$\vec{F_{fluid}}$}
@@ -41,9 +41,13 @@
 \psline[linecolor=black, linewidth=0.012](4.664186,2.3725133)(4.4686303,1.9058466)
 \psline[linecolor=black, linewidth=0.012](4.501223,2.372513)(4.3056674,1.9058465)
 \psline[linecolor=black, linewidth=0.012](5.1530747,2.372513)(4.9575195,1.9058465)
-\rput[bl](3.2064939,-0.22996545){$(m,l)$}
+\rput[bl](3.1939938,-0.6924654){$(m,l)$}
 \psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(5.5277476,2.0859988)(7.966104,2.0859988)
 \rput[bl](6.5798025,2.2449028){$\vec{v_c}$}
+\psline[linecolor=colour1, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{<-}(3.4961305,0.6075132)(2.537936,-0.88429236)
+\pscircle[linecolor=colour2, linewidth=0.04, fillstyle=solid,fillcolor=colour2, dimen=outer](2.4808948,-0.9663335){0.14177215}
+\rput[bl](3.5873547,0.36367273){$\vec{T}$}
+\psline[linecolor=colour3, linewidth=0.03, linestyle=dashed, dash=0.17638889cm 0.10583334cm](4.3346877,1.8977591)(4.3346877,-1.8977591)
 \end{pspicture}
 }
 
