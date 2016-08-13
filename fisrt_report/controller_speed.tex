@@ -1,0 +1,45 @@
+ The cable for survey operation need to be under a certain depth,from ~\ref{fig:depth_length_speed_pendulum} it can be seen that extend the length of the cable dynamically during the survey will not help because at higher speed the end of the cable reach quickly the surface level. Mass can be added to ensure depth until a certain speed, following ~\ref{fig:depth_mass_speed_pendulum} a cable mass of 9 kilogrammes would ensure a depth of 5 meters for a cable length of 10 meters until 1.5 meters per second.
+   But to have in general the same depth during a survey the speed of the boat need to be controlled and remain steady. 
+   One  way to do it be the handling of the sail and using the water resistance to slow down the boat but for this to work would me a perfect sail that wouldn't give any speed when the sail are trimmed in tightly (in ~\ref{fig:drawing_boat_ink} $\delta_s~=~0$).
+   Some command can be send to the rudder to make the boat jiggle and lose speed.
+ 
+\begin{algorithm}[H]
+\caption{Cable Depth sailbot controller using rudder and sail }
+\label{alg:breahAlg}
+\begin{algorithmic}[1]
+\REQUIRE $depth_{target}$ (< 0), $v_{boat}$\\
+   $\delta_s$ : Sail command given by conventional navigation algorithm\\
+   $\delta_r$ : Rudder command given by conventional navigation algorithm\\
+   $C_D$ : drag coefficient of the cable \\
+   $l$ : length of the cable\\
+   $\rho$: density of water\\
+   $g$ : gravitational constant\\
+   $r$ : radius of the cable\\
+   $m$ : mass of the cable\\
+\STATE $v_{target} \leftarrow \sqrt{\frac{2 g \cdot (m - l \rho \pi r^2)}{C_D l 2 r \rho} \cdot \tan(acos(\frac{-depth_{target}}{l}))}$
+\STATE $\Delta_{v} \leftarrow v_{target} - v_{boat}$
+\IF{$\Delta_{v} <  0 $}
+\STATE $\delta_s \leftarrow 0$
+\STATE $\delta_r \leftarrow \delta_r - \textnormal{sign}(\delta_r) \cdot (k_p  \cdot \Delta_v + k_d \cdot \dot{\Delta_v})$
+\ENDIF
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption{Speed sailbot controller using rudder and sail }
+\label{alg:breahAlg}
+\begin{algorithmic}[1]
+\REQUIRE $v_{target}$, $v_{boat}$\\
+   $\delta_s$ : Sail command given by conventional navigation algorithm\\
+   $\delta_r$ : Rudder command given by conventional navigation algorithm\\
+\STATE $\Delta_{v} \leftarrow v_{target} - v_{boat}$
+\IF{$\Delta_{v} \leq  0 $}
+\STATE $\delta_s \leftarrow 0$
+\ELSE
+\IF{$v_{boat} > 0$}
+\STATE $\delta_s \leftarrow \delta_s \cdot \exp(-k \cdot (\frac{v_{target}}{\Delta_v}+1)) $
+\ENDIF
+\ENDIF
+\end{algorithmic}
+\end{algorithm}
+
