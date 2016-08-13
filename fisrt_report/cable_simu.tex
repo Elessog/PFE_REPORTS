@@ -4,7 +4,7 @@ way to get a good cable behaviour.
 
 \section{The simplest model}
 
-If the cable is taken a a simple pendulum (lumped mass) when the towed is at a constant speed 
+If the cable is taken as a simple pendulum (lumped mass) of mass $m$ and length $l$ when the towed is at a constant speed 
 and constant heading, the equilibrium state is researched.
 
 
@@ -46,26 +46,27 @@ If~\ref{equ_Stab_1} is projected on $\vec{u_{\theta}}$ to get rid off the unknow
  \label{equ_Stab_2}
 \end{equation}
 
-Thus the angle $\theta$ is computable :
+Thus the angle $\theta$ can be found if the cable is more heavy enough ($m -l \rho \pi r^2 > 0)$ i.e.\ the cable is more dense than the fluid otherwise the cable should be always on the surface:
 
 \begin{equation}
  \theta = \arctan(\frac{C_D l 2 r \rho}{2 g \cdot (m - l \rho \pi r^2)} \cdot v_c^2)\\
  \label{equ_theta_1}
  \end{equation}
  
+With this formula the depth of the end of the pendulum can be computed with different parameters, linear mass of the cable \ref{fig:depth_mass_speed_pendulum}  or the length of the cable depending 
  
  \begin{figure}[H]
 \centering
     \begin{minipage}[b]{0.4\textwidth}
     \centering
-    \includegraphics[scale=0.4,angle=0]{depth_mass_speed_pendulum}
+    \includegraphics[scale=0.4,angle=0]{depth_length_speed_pendulum}
     \caption{Profile of Depth over Speed of base depending on length of the cable.}
     \label{fig:depth_mass_speed_pendulum}
     \end{minipage}
     \hfill
     \begin{minipage}[b]{0.4\textwidth}
     \centering
-    \includegraphics[scale=0.4,angle=0]{depth_length_speed_pendulum}
+    \includegraphics[scale=0.4,angle=0]{depth_mass_speed_pendulum}
     \caption{Profile of Depth over Speed of base depending on linear mass of the cable.}
     \label{fig:depth_length_speed_pendulum}
     \end{minipage}
@@ -75,7 +76,7 @@ Thus the angle $\theta$ is computable :
  
 \section{SimMechanics\texttrademark ~Multi-Body Engine}
 
-In order to get a model quickly, the use of an easy to made model was done with SimMechanics in Simulink.
+In order to get a model quickly, the use of an "easy to made" model was done with SimMechanics in Simulink.
 The program allow to easily connect parts and their joints.The SimMechanics engine will be handling the movement of the cable and the effect of forces on it.
 
 \begin{figure}[H]
@@ -98,7 +99,7 @@ this first model the cable is modelled via seven rods connected via 2 degree of 
 Each rod is represented by a body, the object handled by SimMechanics, this body got a mass and an inertia matrix,here the inertia for a cylinder has been chosen. Then the application points of the forces and joints are
 initialized.
 
-The gravity is automatically computed by SimMechanics but not other optionals forces (at least for the first generation) such as the fluid friction and the Archimedes principle. 
+The gravity is automatically computed by SimMechanics but not other optionals forces (at least for the first version) such as the fluid friction and the Archimedes principle. 
 
 \begin{figure}[H]
 \centering
@@ -117,9 +118,7 @@ The gravity is automatically computed by SimMechanics but not other optionals fo
     \end{minipage}
 \end{figure}
 
-To compute the other forces SimMechanics allows the application of forces and torque on the body therefore, for each
-body a sensor (see~\ref{fig:fluidSimMech}) output the velocity of the center of gravity of the rod, then the 
-fluid friction is computed for each direction (the coefficient stay the same for each direction and pose of the cable in this model) to be applied on the body via an actuator \footnote{The video of the simulation can be see here \href{https://youtu.be/xEDApnU54ac}{Simulink video}.}.
+To compute the other forces SimMechanics allows the application of forces and torque on the body therefore, for each body a sensor (see~\ref{fig:fluidSimMech}) output the velocity of the center of gravity of the rod, then the  fluid friction is computed for each direction (the coefficient stay the same for each direction and pose of the cable in this model) to be applied on the body via an actuator \footnote{The video of the simulation can be see here \href{https://youtu.be/xEDApnU54ac}{Simulink video https://youtu.be/xEDApnU54ac}.}.
 
 \begin{figure}[H]
 \centering
@@ -192,11 +191,13 @@ The result of the fluid friction forces (~\ref{fig:fluidSpeed}) is what was expe
 
 The same can be said on the vertical point with the sums of gravity and Archimedes principle equals the effects of the boat on the cable with no dependence with the speed.\\
 
-The use of Simulink is easy and efficient but not everyone has the toolbox to use this simulation, so a more 
-environment-free simulation is required.
-\section{Independent cable Model}
+The use of Simulink is easy and efficient to create a model quickly but this tool was not availaible in the future for the project, so a more environment-free simulation is required , thus leading to the second part of
+this chapter. 
 
-This independent cable model is fully taken from  Vegar Johansen PhD thesis~\cite{johansen2007modelling} where the author present different to model a cable including the rod model. In this model the rods are modelled by vectors and centres of gravity.
+
+\section{Rod Cable Model}
+
+This cable model is fully taken from  Vegar Johansen PhD thesis~\cite{johansen2007modelling} where the author present different to model a cable including the rod model. In this model the rods are modelled by vectors and centres of gravity and allows the application of different forces on the cable.
 
 A rod can characterised by the two following object:
 
@@ -213,18 +214,33 @@ b &= \begin{bmatrix}
 \end{bmatrix}\, \textnormal{is the vector for the rod orientation}
 \end{align}
 
-The forces acting on the cable are applied on the ends of each rods, meaning for example, the gravity force would be split in two forces acting on each side of the bar. Leading to the base formulas where a and b are the extremity of the bar:
+The forces acting on the cable are applied on the ends of each rods, meaning for example, the gravity force would be split in two forces acting on each side of the bar. Leading to the base formulas where a and c are the extremity of the bar ,  $f_X$ is the force applying at the point $X$ and $L$ is the length of the rod :
 
 \begin{align}
-\ddot{r} &= \dfrac{1}{m}  (f_a+f_b) \\
-\ddot{b} &=  \dfrac{6}{m}(f_a+f_b) - \dfrac{b}{L^{2}}  (\dfrac{6}{m}b^{T}(f_a+f_b)+\dot{b}^{T}\dot{b}) 
+\ddot{r} &= \dfrac{1}{m}  (f_a+f_c) \\
+\ddot{b} &=  \dfrac{6}{m}(f_a+f_c) - \dfrac{b}{L^{2}}  (\dfrac{6}{m}b^{T}(f_c+f_c)+\dot{b}^{T}\dot{b}) 
 \end{align}
+
+
 
 Then the model adds the use of the Baumgarte stabilization constraint~\cite{baumgarte1972stabilization} to respect the physical constraint on the bar , length and position of fixed points if there is, thus changing the precedent equation. 
 The stabilization technique is a PID method therefore it depends on coefficient parameters, in a variable-step solver augmenting the P an D coefficient improve the simulation but will increase the time needed to do the simulation.
 
 Johansen proposes three scenarios for this model, a free cable, a fixed-free scenario where one side of the cable is attached to a point and the last one is a fixed-fixed where both side are attached to points.
 The model interesting for the modelling of the sailboat towing a cable is the fixed-free scenario where the attachment point is the boat.
+
+Applying force on each rod are the gravity, Archimedes principle and the fluid friction, for the rod $n$ :
+
+{
+\begin{align}
+\centering
+F_{fluid~n,a,x} &= -C_D (2 r ) \rho \cdot \displaystyle \int_{0}^{L/2} v_{a,x}(l)^2 \cdot \frac{2l}{L} \, \mathrm{d}l\ \nonumber \\
+\vec{v_{a}}(l) &= \vec{\dot{r_n}} - \frac{2 l}{L} \cdot \vec{b_n} \times \frac{\vec{\dot{b_n}}}{L} \nonumber \\
+\vec{v_{b}}(l) &= \vec{\dot{r_n}} + \frac{2 l}{L} \cdot \vec{b_n} \times \frac{\vec{\dot{b_n}}}{L}
+\end{align}
+}
+
+
 
 \begin{figure}[H]
 \centering
@@ -256,7 +272,7 @@ there still some left over:
     \label{fig:errorLRod}
 \end{figure}
 
-In the figure~\ref{fig:errorLRod} the error in length reach a maximum around one centimetre for a rod length of four meters\footnote{To see simulations : \href{https://www.youtube.com/watch?v=T7DRGq3E5x8}{Fixed cable video} or \href{https://www.youtube.com/watch?v=V4X0PsgsXZY to see simulations}{Moving cable with a constant speed video}}, this error can be considered negligible in this case but in some runs if the start is too sharp then, the simulation may diverge.
+In the figure~\ref{fig:errorLRod} the error in length reach a maximum around one centimetre for a rod length of four meters\footnote{To see simulations : \href{https://www.youtube.com/watch?v=T7DRGq3E5x8}{Fixed cable video https://www.youtube.com/watch?v=T7DRGq3E5x8} or \href{https://www.youtube.com/watch?v=V4X0PsgsXZY}{Moving cable with a constant speed video https://www.youtube.com/watch?v=V4X0PsgsXZY}}, this error can be considered negligible in this case but in some runs if the start is too sharp then, the simulation may diverge.
 
 In this model each rod can have a different length and mass:
 
@@ -279,6 +295,6 @@ Changing the linear mass or the mass of the last rod have different effect on th
 \end{figure}
 
 To simulate this model there is more than one options, but to not make it diverge tweaking must be made.
-If using a fixed-step size integration (Runge-Kutta,ODE45) the step need to be $\sim\mathcal{O}(10^{-3})$, it is the limit of this method and if the cable endure big acceleration it will diverge.
+If using a fixed-step size integration (Runge-Kutta) the step need to be $\sim\mathcal{O}(10^{-3})$, it is the limit of this method and if the cable endure big acceleration it will diverge.
 
-With an solver with variable step-size (ODE23) the result will be in general more accurate but the computation time became very high needing more than one second to compute one second of simulation.If possible Matlab coder should be used to help improve the computation time.
+With an solver with variable step-size (ODE45) the result will be in general more accurate but the computation time became very high needing more than one second to compute one second of simulation.If possible Matlab coder should be used to help improve the computation time.
