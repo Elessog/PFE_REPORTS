@@ -1,0 +1,39 @@
+% \usepackage[usenames,dvipsnames]{pstricks}
+% \usepackage{epsfig}
+% \usepackage{pst-grad} % For gradients
+% \usepackage{pst-plot} % For axes
+% \usepackage[space]{grffile} % For spaces in paths
+% \usepackage{etoolbox} % For spaces in paths
+% \makeatletter % For spaces in paths
+% \patchcmd\Gread@eps{\@inputcheck#1 }{\@inputcheck"#1"\relax}{}{}
+% \makeatother
+% % User Packages:
+% \usepackage{amsmath}
+% \usepackage{amsfonts}
+% \usepackage{amssymb}
+% \usepackage{algorithm}
+% \usepackage{algorithmic}
+% 
+\psscalebox{1.0 1.0} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-3.0463762)(11.863704,3.0463762)
+\definecolor{colour0}{rgb}{0.6117647,0.6117647,0.6117647}
+\psellipse[linecolor=black, linewidth=0.04, dimen=outer](2.9514816,-1.3041397)(0.89,1.55)
+\psbezier[linecolor=black, linewidth=0.04](2.610053,0.1315745)(3.1814816,0.48871735)(8.281482,3.0887175)(9.038625,3.017288785661975)
+\psbezier[linecolor=black, linewidth=0.04](9.022083,2.99774)(9.422083,2.3691685)(9.710053,1.6097699)(9.638624,0.13834141724091809)
+\psbezier[linecolor=black, linewidth=0.04](3.210053,-2.7421098)(3.7814817,-2.3849669)(8.881481,0.21503314)(9.638624,0.14360457513566247)
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(3.0074077,-1.1985842)(0.77037054,-2.5615473)
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(9.511111,1.8680824)(11.496297,2.5643787)
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{<->}(4.5185184,2.4903047)(5.0962963,1.4532676)(6.711111,2.2828972)
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(5.4074078,0.40141577)(5.392593,-3.139325)
+\rput[bl](10.503704,1.1569713){$T(l+dl)$}
+\rput[bl](1.762963,-2.8726583){$T(l)$}
+\rput[bl](5.9111114,-2.3985841){W}
+\rput[bl](3.6740742,2.6680825){$F_N(l)$}
+\rput[bl](6.711111,2.534749){$F_T(l)$}
+\psline[linecolor=colour0, linewidth=0.03, linestyle=dashed, dash=0.17638889cm 0.10583334cm](2.9925928,-1.1985842)(0.0,-1.1985842)
+\psarc[linecolor=black, linewidth=0.04, dimen=outer, showpoints=true, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(2.9925928,-1.2011385){0.6722861}{180.0}{210.0}
+\rput[bl](1.4125161,-0.63459957){$\theta(l)$}
+\end{pspicture}
+}
+

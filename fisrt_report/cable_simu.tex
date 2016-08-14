@@ -1,200 +1,5 @@
 The choice of rods to model the cable was done because it seemed to be the simpler
 way to get a good cable behaviour.
-
-
-\section{The simplest model}
-
-If the cable is taken as a simple pendulum (lumped mass) of mass $m$ and length $l$ when the towed is at a constant speed 
-and constant heading, the equilibrium state is researched.
-
-
-\begin{figure}[H]
-\centering
-\psscalebox{0.8 0.8} % Change this value to rescale the drawing.
-{
-\input{pendulum}
-}
-\caption{Representation of cable as a simple pendulum}
-\label{fig:model_pendulum}
-\end{figure}
-
-
-$\vec{w}$ is the gravitational force and $\vec{\Pi}$ represent the Archimedes principle, $\vec{F_{fluid}}$ is the resistance due to the fluid and $\vec{T}$ is the force of the base on the cable. $\vec{v_c}$ is the speed of the base (e.g.\ the boat). If the system is at equilibrium then the speed of the cable is the same as the speed of the base. 
-
-%\begin{align}
-\begin{equation}
- \vec{0} = \vec{T}+\vec{F_{fluide}}+\vec{w}+\vec{\Pi}\\
- \label{equ_Stab_1}
-\end{equation}
-
-
-Where :
-
-
-{
-\begin{align}
-\centering
-\vec{F_{fluide}} &= -C_D (2 r l) \rho \frac{ \|v_c\|}{2} \cdot \vec{v_c} \\
-\vec{w} &= m \cdot \vec{g} \\
-\vec{\Pi} &= - \rho \pi r^2 l \cdot \vec{g}
-\end{align}
-}
-If~\ref{equ_Stab_1} is projected on $\vec{u_{\theta}}$ to get rid off the unknown force $\vec{T}$ the result is:
-
-\begin{equation}
- 0 = (m g - l \rho \pi r^2 g) \cdot \sin(\theta)-C_D l 2 r \rho \frac{v_c^2}{2} \cdot \cos(\theta)\\
- \label{equ_Stab_2}
-\end{equation}
-
-Thus the angle $\theta$ can be found if the cable is more heavy enough ($m -l \rho \pi r^2 > 0)$ i.e.\ the cable is more dense than the fluid otherwise the cable should be always on the surface:
-
-\begin{equation}
- \theta = \arctan(\frac{C_D l 2 r \rho}{2 g \cdot (m - l \rho \pi r^2)} \cdot v_c^2)\\
- \label{equ_theta_1}
- \end{equation}
- 
-With this formula the depth of the end of the pendulum can be computed with different parameters, linear mass of the cable \ref{fig:depth_mass_speed_pendulum}  or the length of the cable depending 
- 
- \begin{figure}[H]
-\centering
-    \begin{minipage}[b]{0.4\textwidth}
-    \centering
-    \includegraphics[scale=0.4,angle=0]{depth_length_speed_pendulum}
-    \caption{Profile of Depth over Speed of base depending on length of the cable.}
-    \label{fig:depth_mass_speed_pendulum}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.4\textwidth}
-    \centering
-    \includegraphics[scale=0.4,angle=0]{depth_mass_speed_pendulum}
-    \caption{Profile of Depth over Speed of base depending on linear mass of the cable.}
-    \label{fig:depth_length_speed_pendulum}
-    \end{minipage}
-\end{figure}
-
- 
- 
-\section{SimMechanics\texttrademark ~Multi-Body Engine}
-
-In order to get a model quickly, the use of an "easy to made" model was done with SimMechanics in Simulink.
-The program allow to easily connect parts and their joints.The SimMechanics engine will be handling the movement of the cable and the effect of forces on it.
-
-\begin{figure}[H]
-\centering
-    \includegraphics[scale=0.2,angle=0]{MultyBodySimMech.png}
-    \caption{Simulink Model of the Cable.}
-    \label{fig:SimulinkFullMod}
-\end{figure}
-
-The implementation of the model in Simulink is done in a graphic way (see~\ref{fig:SimulinkFullMod}). In
-this first model the cable is modelled via seven rods connected via 2 degree of freedom joints, which are rotations.
-
-\begin{figure}[H]
-\centering
-    \includegraphics[scale=0.35,angle=0]{rod_pic.png}
-    \caption{Single rod, a part of the cable.}
-    \label{fig:SingleRod}
-\end{figure}
-
-Each rod is represented by a body, the object handled by SimMechanics, this body got a mass and an inertia matrix,here the inertia for a cylinder has been chosen. Then the application points of the forces and joints are
-initialized.
-
-The gravity is automatically computed by SimMechanics but not other optionals forces (at least for the first version) such as the fluid friction and the Archimedes principle. 
-
-\begin{figure}[H]
-\centering
-    \begin{minipage}[b]{0.4\textwidth}
-    \centering
-    \includegraphics[scale=0.2,angle=0]{fluidfrictionSimMech.png}
-    \caption{Computation of the fluid friction forces in Simulink.}
-    \label{fig:fluidSimMech}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.4\textwidth}
-    \centering
-    \includegraphics[scale=0.2,angle=0]{archiSimMech.png}
-    \caption{Computation of the Archimedes force in Simulink.}
-    \label{fig:archSimMech}
-    \end{minipage}
-\end{figure}
-
-To compute the other forces SimMechanics allows the application of forces and torque on the body therefore, for each body a sensor (see~\ref{fig:fluidSimMech}) output the velocity of the center of gravity of the rod, then the  fluid friction is computed for each direction (the coefficient stay the same for each direction and pose of the cable in this model) to be applied on the body via an actuator \footnote{The video of the simulation can be see here \href{https://youtu.be/xEDApnU54ac}{Simulink video https://youtu.be/xEDApnU54ac}.}.
-
-\begin{figure}[H]
-\centering
-    \begin{minipage}[b]{0.5\textwidth}
-    \centering
-    \includegraphics[scale=0.4,angle=0]{cable_simu2.png}
-    \caption{Output of the Simulink simulation with random pose at the start.}
-    \label{fig:Out1SimMech}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.45\textwidth}
-    \centering
-    \includegraphics[scale=0.4,angle=0]{cable_simu1.png}
-    \caption{Output of the Simulink simulation a few second later than~\ref{fig:Out1SimMech}.}
-    \label{fig:Out2SimMech}
-    \end{minipage}
-\end{figure}
-
-
-More simulation has been made to determine the behaviour of the cable, mainly the cable is attached on a point following a strict line with a constant speed, the cable is towed but has no action on the towing point for the moment.
-
-\begin{figure}[H]
-\centering
-    \begin{minipage}[b]{0.4\textwidth}
-    \centering
-    \includegraphics[scale=0.45,angle=0]{angle_over_speed_r.png}
-    \caption{Angle of the cable to the vertical depending on the speed of the boat.}
-    \label{fig:angleSpeed}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.45\textwidth}
-    \centering
-    \includegraphics[scale=0.35,angle=0]{stabilized_cable.png}
-    \caption{Output of a stabilized cable when towed by a particle with a constant and rectilinear motion.}
-    \label{fig:stabCable}
-    \end{minipage}
-\end{figure}
-
-In figure~\ref{fig:angleSpeed} is represented the angle of the cable to the vertical depending of the speed of the 
-boat when the system is stabilized. The curve resemble to an inverse curve dependant on the density of the cable.
-It means beyond a certain velocity the cable will be useless due to be not enough submerged.
-
-\begin{figure}[H]
-\centering
-    \begin{minipage}[b]{0.4\textwidth}
-    \centering
-    \includegraphics[scale=0.45,angle=0]{fluid_forces_over_speed.png}
-    \caption{Resultant of the fluid forces when stabilized depending on the speed.}
-    \label{fig:fluidSpeed}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[b]{0.45\textwidth}
-    \centering
-    \includegraphics[scale=0.45,angle=0]{forces_over_speed_r.png}
-    \caption{Resultant of forces on the joint boat-cable depending on the speed.}
-    \label{fig:forceSpeed}
-    \end{minipage}
-\end{figure}
-
-The result of the fluid friction forces (~\ref{fig:fluidSpeed}) is what was expected as the model use a linear friction which then can be extract from the the resultant at the junction point on the boat (~\ref{fig:forceSpeed} , cyan is horizontal force and green vertical force). Stabilized the force of the boat on the cable is equal to the force of the fluid on the cable which is logical as they are the only interaction on the horizontal axis (see \eqref{equ_Stab} where $\vec{P}$ is the gravitational force and $\vec{\Pi}$ represent the Archimedes principle).
-
-%\begin{align}
-\begin{equation}
- \vec{0} = \vec{f}_{cable/boat}+\vec{f}_{fluide}+\vec{P}+\vec{\Pi}\\
- \label{equ_Stab}
-\end{equation}
-%0 &= f_{cable/boat,x} + f_{fluide,x}\\
-%0 &= f_{cable/boat,z} +f_{fluide,z}(0) + P_z+\Pi_z
-%\end{align}
-
-The same can be said on the vertical point with the sums of gravity and Archimedes principle equals the effects of the boat on the cable with no dependence with the speed.\\
-
-The use of Simulink is easy and efficient to create a model quickly but this tool was not availaible in the future for the project, so a more environment-free simulation is required , thus leading to the second part of
-this chapter. 
-
-
 \section{Rod Cable Model}
 
 This cable model is fully taken from  Vegar Johansen PhD thesis~\cite{johansen2007modelling} where the author present different to model a cable including the rod model. In this model the rods are modelled by vectors and centres of gravity and allows the application of different forces on the cable.
@@ -276,23 +81,33 @@ In the figure~\ref{fig:errorLRod} the error in length reach a maximum around one
 
 In this model each rod can have a different length and mass:
 
+
 \begin{figure}[H]
 \centering
-    \includegraphics[scale=0.5,angle=0]{inde_cable_force_mass.png}
+    \begin{minipage}[b]{0.4\textwidth}
+    \centering
+    \includegraphics[scale=0.45,angle=0]{inde_cable_force_mass.png}
     \caption{Variation of reaction force of cable on boat depending on mass of last rod.}
     \label{fig:massForce}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[scale=0.45,angle=0]{inde_cable_angle_linmass.png}
+    \caption{Variation of the angle of the cable depending on the linear mass of the rods.}
+    \label{fig:linmassAngle}
+    \end{minipage}
 \end{figure}
+
+\begin{equation}
+ \vec{0} = \vec{f}_{cable/boat}+\vec{f}_{fluid}+\vec{P}+\vec{\Pi}\\
+ \label{equ_Stab}
+\end{equation}
 
 In figure~\ref{fig:massForce} is represented the force of the cable on the boat once stabilized and depending of the mass of the last rod. The horizontal force is constant over mass, this is logical as when stabilized mass does not appear in the horizontal part of the equation \eqref{equ_Stab}. And as for the vertical reaction it vary linearly with the mass,thus corresponding to the precedent equation on the z axis.
 
 Changing the linear mass or the mass of the last rod have different effect on the final angle of the cable(see~\ref{fig:linmassAngle}).
 
-\begin{figure}[H]
-\centering
-    \includegraphics[scale=0.6,angle=0]{inde_cable_angle_linmass.png}
-    \caption{Variation of the angle of the cable depending on the linear mass of the rods.}
-    \label{fig:linmassAngle}
-\end{figure}
 
 To simulate this model there is more than one options, but to not make it diverge tweaking must be made.
 If using a fixed-step size integration (Runge-Kutta) the step need to be $\sim\mathcal{O}(10^{-3})$, it is the limit of this method and if the cable endure big acceleration it will diverge.

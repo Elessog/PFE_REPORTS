@@ -77,20 +77,15 @@
 %----------------------------------------------------------------------------------------
 %	SOMMAIRE
 %----------------------------------------------------------------------------------------
+\cleardoublepage  % pour commencer sur une page impaire
+
 \tableofcontents  % Imprime le sommaire
-%\cleardoublepage  % pour commencer sur une page impaire
 
 %%
 \listoffigures  % table des figures
 \listoftables   % table des tableaux
 
-%----------------------------------------------------------------------------------------
-%	GLOSSAIRE
-%----------------------------------------------------------------------------------------
-{
-\printglossaries
-\addcontentsline{toc}{chapter}{Glossary}
-}
+
 %%%----------------------------------------------------------------------------------------
 %%%	PART I 
 %%%----------------------------------------------------------------------------------------
@@ -111,7 +106,7 @@
 \input{viability_model}
 
 
-\chapter{Idea for controller for cable  handling}
+\chapter{Proposition of controller for cable  handling}
 \input{controller_speed}
 
 
@@ -121,6 +116,14 @@
 \chapter*{Conclusion}
 \addcontentsline{toc}{part}{Conclusion}
 %----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	GLOSSAIRE
+%----------------------------------------------------------------------------------------
+{
+\printglossaries
+\addcontentsline{toc}{chapter}{Glossary}
+}
 %\appendix
 \chapter*{Appendix 1}
 \addcontentsline{toc}{chapter}{Appendix 1}

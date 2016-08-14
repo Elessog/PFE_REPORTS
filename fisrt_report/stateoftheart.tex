@@ -1,12 +1,111 @@
  \section{Cable}
  
- %element finis
- %jaulin towing
  It exist a certain number of different method to simulate a cable from finite elements to lumped mass
- with different implementations in each cases, most off the literature also will present a multi systems
- problem 
+ with different implementations in each cases.
  
- \section{Sailboat model}
+\subsubsection*{The simplest model}
+
+If the cable is taken as a simple pendulum (lumped mass) of mass $m$ and length $l$ when the towed is at a constant speed 
+and constant heading, the equilibrium state is researched.
+
+
+\begin{figure}[H]
+\centering
+\psscalebox{0.8 0.8} % Change this value to rescale the drawing.
+{
+\input{pendulum}
+}
+\caption{Representation of cable as a simple pendulum}
+\label{fig:model_pendulum}
+\end{figure}
+
+
+$\vec{w}$ is the gravitational force and $\vec{\Pi}$ represent the Archimedes principle, $\vec{F_{fluid}}$ is the resistance due to the fluid and $\vec{T}$ is the force of the base on the cable. $\vec{v_c}$ is the speed of the base (e.g.\ the boat) and $(m,l)$ is the mass and length of the pendulum. If the system is at equilibrium then the speed of the cable is the same as the speed of the base. 
+
+%\begin{align}
+\begin{equation}
+ \vec{0} = \vec{T}+\vec{F_{fluide}}+\vec{w}+\vec{\Pi}\\
+ \label{equ_Stab_1}
+\end{equation}
+
+
+Where if $C_D$ is the drag coefficient $\rho$ is the fluid density, $r$ is the radius of the cable:
+
+
+{
+\begin{align}
+\centering
+\vec{F_{fluide}} &= -C_D (2 r l) \rho \frac{ \|v_c\|}{2} \cdot \vec{v_c} \\
+\vec{w} &= m \cdot \vec{g} \\
+\vec{\Pi} &= - \rho \pi r^2 l \cdot \vec{g}
+\end{align}
+}
+If~\ref{equ_Stab_1} is projected on $\vec{u_{\theta}}$ to get rid off the unknown force $\vec{T}$ the result is:
+
+\begin{equation}
+ 0 = (m g - l \rho \pi r^2 g) \cdot \sin(\theta)-C_D l 2 r \rho \frac{v_c^2}{2} \cdot \cos(\theta)\\
+ \label{equ_Stab_2}
+\end{equation}
+
+Thus the angle $\theta$ can be found if the cable is more heavy enough ($m -l \rho \pi r^2 > 0)$ i.e.\ the cable is more dense than the fluid otherwise the cable should be always on the surface:
+
+\begin{equation}
+ \theta = \arctan(\frac{C_D l 2 r \rho}{2 g \cdot (m - l \rho \pi r^2)} \cdot v_c^2)\\
+ \label{equ_theta_1}
+ \end{equation}
+ 
+With this formula the depth of the end of the pendulum can be computed with different parameters, linear mass of the cable \ref{fig:depth_mass_speed_pendulum}  or the length of the cable depending 
+ 
+ \begin{figure}[H]
+\centering
+    \begin{minipage}[b]{0.4\textwidth}
+    \centering
+    \includegraphics[scale=0.4,angle=0]{depth_length_speed_pendulum}
+    \caption{Profile of Depth over Speed of base depending on length of the cable.}
+    \label{fig:depth_mass_speed_pendulum}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.4\textwidth}
+    \centering
+    \includegraphics[scale=0.4,angle=0]{depth_mass_speed_pendulum}
+    \caption{Profile of Depth over Speed of base depending on linear mass of the cable.}
+    \label{fig:depth_length_speed_pendulum}
+    \end{minipage}
+\end{figure}
+
+\subsubsection*{Finite Elements Method}
+ 
+ 
+ This method discretize the cable to small elements in the following drawing $T$ represent the tension from the other elements of the cable, $W$ the weight of the cable, $F_N$ and: $F_T$ represent the hydrodynamics forces:
+ 
+\begin{figure}[H]
+\centering
+\psscalebox{0.40 0.40} % Change this value to rescale the drawing.
+{
+\input{finite_element}
+}
+    \caption{Representation of a finite elements (see~\cite{obligado2013experimental}).}
+    \label{fig:finite_elem}
+\end{figure}
+
+In general this method is heavy on computational resources due to matrix inversion at each step to compute the solution.
+ 
+ 
+\subsubsection*{Lumped mass}
+ 
+The cabled is divided in in a certain number of and each segment can be viewed as a mass damped spring system, 
+the spring is to simulate elongation of the cable in some cases:
+
+\begin{figure}[H]
+\centering
+    \includegraphics[scale=0.15,angle=0]{damped_spring_lm.png}
+    \caption{Representation of Lumped Mass model (see~\cite{masciola2014extending}).}
+    \label{fig:lm_damped}
+\end{figure}
+
+This model is in general faster to execute because of it does note need the computing of a matrix inverse.
+ 
+\section{Sailboat model}
 
 The model of the sailboat come from~\cite{Melin2016} a modified version of the model in~\cite{LeBars2013}.
 

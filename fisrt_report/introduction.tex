@@ -1,30 +1,18 @@
-Check marine environment more easily , need sailboat that can stay in the sea without surveillance 
-and also moving to different part of the sea or ocean. One of the way of gathering data is with cable of 
-hydrophones to detect porpoises, an endangered species in the Baltic sea. the advantage of the sailboat would be the manoeuvrability without the noise of a manned boat and the possibility to go in more close to land water, and area not covered by the buoy.\\
-cd .
+The advance in the in making sailboat more autonomous of sailboat open new perspective in a few domains, such as marine research, a boat that can stay at sea more than on day without surveillance and can change location where the user of the boat would want it to go. This is the goal of \r{A}land Sailing Robots a project of \r{A}land University of Applied Science, developing a sailboat environment-friendly and usable in research.
 
+One research that the boat could follow is the survey of harbour porpoises (\textit{Phocoena phocoen})in the Baltic sea as it an endangered species, in the current state there is fixed buoys to detect those animals in certain places,  but they does not cover every places, a autonomous sailboat would open the possibility of easy survey of any area not covered by the buoys without the noise created by a motorized manned boat.
+When using a boat the researcher need to have a cable, an array of hydrophones that will go deep enough to increase the signal-to-noise ratio, a cable of hydrophones can reach 20 meters.
 
-The goal of this report is to determine the viability of a simulator to help
-the modelling of a sailboat towing a cable. The modelling of a cable can be done
-with different ways such as finite elements for the more complicated solutions or by assimilating the cable
-as multiple connected rods. The last method as been chosen for the model with two options. First using 
-a multi-body engine such as SimMechanics\texttrademark~ in Matlab$^{\circledR}$, then by implementing a language free algorithm to simulate
-only a rod cable model~\cite{johansen2007modelling} (the goal was to not be dependent on a particular external software).\\
+\begin{figure}[H]
+\centering
+    \includegraphics[scale=0.10,angle=0]{porpoise.png}
+    \caption[Caption for LOF]{Harbour Porpoise  photo: Solvin Zankl }
+    \label{fig:porpoise}
+\end{figure}
+
+The main goal of this report is to determine the viability of a small sailboat to carry such a cable. It will be done by simulation and field test. The modelling of a cable can be done with different ways such as finite elements for the more complicated solutions or by assimilating the cable as multiple connected rods. The last method as been chosen for the model. Following the work of~\cite{johansen2007modelling} (the goal was to not be dependent on a particular external software for multi-body dynamics).\\
 The cable simulation will be then added to the modified sailboat model to take into account the effect of
-the cable on the sailboat.
+the cable on the sailboat and model the behaviour of the boat and the cable.
 
-\section*{Boat specification}
+Test have been done with the project sailboat the result will be compared to the simulation and use to determine the possibilities of the towing sailboat.
 
-Actuator
-
-Battery
-
-Raspberry V3
-
-Arduino Uno 
-
-maestro polulu
- radio receiver
- sensor current
- 
- 
