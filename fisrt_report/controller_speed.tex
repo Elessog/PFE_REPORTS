@@ -116,7 +116,7 @@ The following algorithm is a modified version of a proportional controller as th
     \begin{minipage}[b]{0.45\textwidth}
     \centering
     \includegraphics[scale=0.45,angle=0]{response_algo3}
-    \caption{Path of the boat under algorithm}
+    \caption{Value of the sail angle multiplier depending on the speed error }
     \label{fig:responAlgo3}
     \end{minipage}
 \end{figure}
@@ -143,7 +143,7 @@ The following algorithm is a modified version of a proportional controller as th
 
 The algorithm~\ref{alg:breakAlg3} seems to be working on simulation, but suppose that when $\delta_s = 0$ the wind does not have any effect on the boat. But in general the main sail in itself is not rigid therefore the wind will still have an effect on the boat. They also have a front sail which is not controlled and will make the boat go forward. If these two non controllable are more powerful than the friction of the water then the boat will not be able to slow down to the right speed with only the control of the sail.
 
-A solution to resolve this problem would to put weight on the cable so that the minimal speed increases (see~\ref{fig:depth_length_speed_pendulum}), adding length to the cable would not help on normal speed (1-4 m/s).
+A solution to resolve this problem would to put weight on the cable so that the minimal speed increases (see~\ref{fig:depth_length_speed_pendulum}), adding length to the cable would not help on normal speed superior to 1 meter per second.
 
 
 An another solution would be to add to the boat a device that would counter the effect of the front sail and the remaining of the main sail. Something simple as board placed to slow down , the surface of this board could be computed to match the push created by the sails.

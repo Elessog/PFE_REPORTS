@@ -1,0 +1,62 @@
+% \usepackage[usenames,dvipsnames]{pstricks}
+% \usepackage{epsfig}
+% \usepackage{pst-grad} % For gradients
+% \usepackage{pst-plot} % For axes
+% \usepackage[space]{grffile} % For spaces in paths
+% \usepackage{etoolbox} % For spaces in paths
+% \makeatletter % For spaces in paths
+% \patchcmd\Gread@eps{\@inputcheck#1 }{\@inputcheck"#1"\relax}{}{}
+% \makeatother
+% % User Packages:
+% \usepackage{amsmath}
+% \usepackage{amsfonts}
+% \usepackage{amssymb}
+% \usepackage{algorithm}
+% \usepackage{algorithmic}
+\psscalebox{1.0 1.0} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-4.1751976)(14.16,4.1751976)
+\psframe[linecolor=black, linewidth=0.04, dimen=outer](12.612632,3.5100658)(9.352632,2.150066)
+\psframe[linecolor=black, linewidth=0.04, dimen=outer](8.732163,-0.4449049)(5.8777776,-1.5849049)
+\psframe[linecolor=black, linewidth=0.04, dimen=outer](12.053947,-0.48046044)(10.213947,-1.5404605)
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](13.711579,-1.0104605){0.44842106}
+\psframe[linecolor=black, linewidth=0.04, dimen=outer](4.7357893,1.6437501)(1.6557895,0.5037501)
+\rput[bl](10.027632,2.6750658){Real System}
+\rput[bl](6.244971,-1.169905){Model system}
+\rput[bl](10.858948,-1.1454605){$e^{-\tau}$}
+\rput[bl](13.884662,-0.5287311){+}
+\rput[bl](13.0323305,-0.9236183){-}
+\rput[bl](0.90803826,-2.7845752){+}
+\rput[bl](2.4207895,0.9537501){Controller}
+\pscircle[linecolor=black, linewidth=0.04, dimen=outer](0.44842106,-2.9257236){0.44842106}
+\psline[linecolor=black, linewidth=0.04](11.0915785,-1.5148145)(11.081053,-2.9272547)
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(12.06,-1.0183551)(13.281053,-1.0078288)
+\psline[linecolor=black, linewidth=0.04](13.716842,-1.4499341)(13.706316,-4.134145)
+\psline[linecolor=black, linewidth=0.04](13.724689,-4.155197)(0.4705263,-4.155197)
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(11.074546,-2.9257238)(0.8657416,-2.9257238)
+\psline[linecolor=black, linewidth=0.04](12.586316,2.835329)(13.730468,2.8248026)
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(13.711578,2.8132238)(13.711578,-0.55870605)
+\psline[linecolor=black, linewidth=0.04](4.7740393,1.0342764)(5.4799604,1.0237501)
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(5.504015,2.8218338)(9.344211,2.8246408)
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(0.46694785,1.0790131)(1.6470436,1.0684868)
+\psline[linecolor=black, linewidth=0.04](0.45368418,1.081932)(0.44315788,-2.4529963)
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{<-}(0.448421,-3.3826613)(0.448421,-4.175197)
+\psline[linecolor=black, linewidth=0.04](5.522584,2.809662)(5.5007653,-1.0303378)
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(5.514503,-1.0149047)(5.870867,-1.0149047)
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(8.717331,-1.0104607)(10.231674,-1.0104607)
+\rput[bl](0.5771292,-3.6463935){+}
+\rput[bl](10.813948,-0.22230256){\textit{Delay}}
+\rput[bl](4.938947,0.6151974){\textit{u}}
+\rput[bl](12.688948,2.9151974){$\begin{bmatrix}
+    x \\
+   y \\
+    \theta
+\end{bmatrix}$}
+\rput[bl](8.922147,-0.76667035){$\begin{bmatrix}
+    x_m \\
+   y _m\\
+    \theta_m
+\end{bmatrix}$}
+\end{pspicture}
+}
+

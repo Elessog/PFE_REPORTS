@@ -6,6 +6,16 @@ The present model is developed using the work by Vegar Johansen PhD thesis~\cite
 
 A rod can characterised by the two following object:
 
+\begin{figure}[H]
+\centering
+\psscalebox{0.5 0.5} % Change this value to rescale the drawing.
+{
+\input{draw_ref_rb}
+}
+\caption{Representation of $r$ and $b$.}
+\label{fig:draw_ref_rb}
+\end{figure}
+
 \begin{align}
 r &= \begin{bmatrix}
     r_x \\
@@ -41,11 +51,11 @@ Applying force on each rod are the gravity, Archimedes principle and the fluid f
 \centering
 F_{fluid~n,a,x} &= -\frac{C_D (2 r ) \rho}{2} \cdot \displaystyle \int_{0}^{L/2} v_{a,x}(l)^2 \cdot \frac{2l}{L} \, \mathrm{d}l\ \nonumber \\
 \vec{v_{a}}(l) &= \vec{\dot{r_n}} - \frac{2 l}{L} \cdot \vec{b_n} \times \frac{\vec{\dot{b_n}}}{L} \nonumber \\
-\vec{v_{b}}(l) &= \vec{\dot{r_n}} + \frac{2 l}{L} \cdot \vec{b_n} \times \frac{\vec{\dot{b_n}}}{L}
+\vec{v_{c}}(l) &= \vec{\dot{r_n}} + \frac{2 l}{L} \cdot \vec{b_n} \times \frac{\vec{\dot{b_n}}}{L}
 \end{align}
 }
 
-The term $\frac{2 l }{L}$ in the integral part is to compensate the lever effect when applying this force on the extremity of the rod.
+The term $\frac{2 l }{L}$ in the integral part is there to compensate the lever effect when applying this force on the extremity of the rod.
 
 
 
@@ -53,14 +63,14 @@ The term $\frac{2 l }{L}$ in the integral part is to compensate the lever effect
 \centering
     \begin{minipage}[b]{0.4\textwidth}
     \centering
-    \includegraphics[scale=0.45,angle=0]{inde_cable_angle_speed.png}
-    \caption{Angle of the cable when stabilized at the final speed.}
-    \label{fig:angleIndSpeed}
+    \includegraphics[scale=0.45,angle=0]{depth_speed_rcm}
+    \caption{Depth of the cable when stabilized at the final speed.}
+    \label{fig:depthIndSpeed}
     \end{minipage}
     \hfill
     \begin{minipage}[b]{0.45\textwidth}
     \centering
-    \includegraphics[scale=0.45,angle=0]{inde_cable_force_speed.png}
+    \includegraphics[scale=0.45,angle=0]{force_speed_rcm}
     \caption{Force of the cable on the boat when stabilized at the final speed.}
     \label{fig:forceIndSpeed}
     \end{minipage}
@@ -68,18 +78,6 @@ The term $\frac{2 l }{L}$ in the integral part is to compensate the lever effect
 
 By doing simulation with this model, the profile of the angle of the cable over speed is the same as in the Simulink model and the same can be done for the reaction of the cable on the boat, an constant for the vertical reaction and a linear decrease for the horizontal reaction dependant on the fluid friction force.
 
-This model include a tolerance to errors which are resolved by the Baumgarte stabilisation technique but 
-there still some left over:
-
-
-\begin{figure}[H]
-\centering
-    \includegraphics[scale=0.5,angle=0]{error_length_run.png}
-    \caption{Error in length of the rods during a simulation run.}
-    \label{fig:errorLRod}
-\end{figure}
-
-In the figure~\ref{fig:errorLRod} the error in length reach a maximum around one centimetre for a rod length of four meters\footnote{To see simulations : \href{https://www.youtube.com/watch?v=T7DRGq3E5x8}{Fixed cable video https://www.youtube.com/watch?v=T7DRGq3E5x8} or \href{https://www.youtube.com/watch?v=V4X0PsgsXZY}{Moving cable with a constant speed video https://www.youtube.com/watch?v=V4X0PsgsXZY}}, this error can be considered negligible in this case but in some runs if the start is too sharp then, the simulation may diverge.
 
 In this model each rod can have a different length and mass:
 
@@ -88,15 +86,15 @@ In this model each rod can have a different length and mass:
 \centering
     \begin{minipage}[b]{0.4\textwidth}
     \centering
-    \includegraphics[scale=0.45,angle=0]{inde_cable_force_mass.png}
-    \caption{Variation of reaction force of cable on boat depending on mass of last rod.}
+    \includegraphics[scale=0.45,angle=0]{force_mass_rcm}
+    \caption{Variation of reaction force of cable on boat depending on linear  mass of cable.}
     \label{fig:massForce}
     \end{minipage}
     \hfill
     \begin{minipage}[b]{0.45\textwidth}
     \centering
-    \includegraphics[scale=0.45,angle=0]{inde_cable_angle_linmass.png}
-    \caption{Variation of the angle of the cable depending on the linear mass of the rods.}
+    \includegraphics[scale=0.45,angle=0]{depth_mass_rcm}
+    \caption{Variation of the depth of the cable depending on the linear mass of cable.}
     \label{fig:linmassAngle}
     \end{minipage}
 \end{figure}
@@ -110,6 +108,17 @@ In figure~\ref{fig:massForce} is represented the force of the cable on the boat 
 
 Changing the linear mass or the mass of the last rod have different effect on the final angle of the cable(see~\ref{fig:linmassAngle}).
 
+This model include a tolerance to errors which are resolved by the Baumgarte stabilisation technique but there still some left over:
+
+
+\begin{figure}[H]
+\centering
+    \includegraphics[scale=0.5,angle=0]{error_length_run.png}
+    \caption{Error in length of the rods during a simulation run.}
+    \label{fig:errorLRod}
+\end{figure}
+
+In the figure~\ref{fig:errorLRod} the error in length reach a maximum around one centimetre for a rod length of four meters\footnote{To see simulations : \href{https://www.youtube.com/watch?v=T7DRGq3E5x8}{Fixed cable video https://www.youtube.com/watch?v=T7DRGq3E5x8} or \href{https://www.youtube.com/watch?v=V4X0PsgsXZY}{Moving cable with a constant speed video https://www.youtube.com/watch?v=V4X0PsgsXZY}}, this error can be considered negligible in this case but in some runs if the start is too sharp then, the simulation may diverge.
 
 To simulate this model there is more than one options, but to not make it diverge tweaking must be made.
 If using a fixed-step size integration (Runge-Kutta) the step need to be $\sim\mathcal{O}(10^{-3})$, it is the limit of this method and if the cable endure big acceleration it will diverge.
