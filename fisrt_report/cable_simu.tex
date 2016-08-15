@@ -2,7 +2,7 @@ The choice of rods to model the cable was done because it seemed to be the simpl
 way to get a good cable behaviour.
 \section{Rod Cable Model}
 
-This cable model is fully taken from  Vegar Johansen PhD thesis~\cite{johansen2007modelling} where the author present different to model a cable including the rod model. In this model the rods are modelled by vectors and centres of gravity and allows the application of different forces on the cable.
+The present model is developed using the work by Vegar Johansen PhD thesis~\cite{johansen2007modelling} as a basis, in this model the rods are modelled by vectors and centres of gravity and allows the application of different forces on the cable, in this model the fluid friction is added.
 
 A rod can characterised by the two following object:
 
@@ -23,7 +23,7 @@ The forces acting on the cable are applied on the ends of each rods, meaning for
 
 \begin{align}
 \ddot{r} &= \dfrac{1}{m}  (f_a+f_c) \\
-\ddot{b} &=  \dfrac{6}{m}(f_a+f_c) - \dfrac{b}{L^{2}}  (\dfrac{6}{m}b^{T}(f_c+f_c)+\dot{b}^{T}\dot{b}) 
+\ddot{b} &=  \dfrac{6}{m}(f_a+f_c) - \dfrac{b}{L^{2}}  (\dfrac{6}{m}b^{T}(f_a+f_c)+\dot{b}^{T}\dot{b}) 
 \end{align}
 
 
@@ -39,11 +39,13 @@ Applying force on each rod are the gravity, Archimedes principle and the fluid f
 {
 \begin{align}
 \centering
-F_{fluid~n,a,x} &= -C_D (2 r ) \rho \cdot \displaystyle \int_{0}^{L/2} v_{a,x}(l)^2 \cdot \frac{2l}{L} \, \mathrm{d}l\ \nonumber \\
+F_{fluid~n,a,x} &= -\frac{C_D (2 r ) \rho}{2} \cdot \displaystyle \int_{0}^{L/2} v_{a,x}(l)^2 \cdot \frac{2l}{L} \, \mathrm{d}l\ \nonumber \\
 \vec{v_{a}}(l) &= \vec{\dot{r_n}} - \frac{2 l}{L} \cdot \vec{b_n} \times \frac{\vec{\dot{b_n}}}{L} \nonumber \\
 \vec{v_{b}}(l) &= \vec{\dot{r_n}} + \frac{2 l}{L} \cdot \vec{b_n} \times \frac{\vec{\dot{b_n}}}{L}
 \end{align}
 }
+
+The term $\frac{2 l }{L}$ in the integral part is to compensate the lever effect when applying this force on the extremity of the rod.
 
 
 

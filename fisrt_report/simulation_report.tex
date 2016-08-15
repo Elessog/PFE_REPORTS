@@ -127,14 +127,139 @@
 %\appendix
 \chapter*{Appendix 1}
 \addcontentsline{toc}{chapter}{Appendix 1}
+\section*{More on the RCM model}
+
+As said before the model is based on the work of~\cite{johansen2007modelling} and the model fixed-free will be more explained in this Appendix.
+
+\begin{align}
+r &= \begin{bmatrix}
+    r_x \\
+    r_y \\
+    r_z
+\end{bmatrix}\, \textnormal{is the center of gravity}\\
+b &= \begin{bmatrix}
+    b_x \\
+    b_y \\
+    b_z
+\end{bmatrix}\, \textnormal{is the vector for the rod orientation}
+\end{align}
+
+
+\begin{align}
+\ddot{r} &= \dfrac{1}{m}  (f_a+f_c) \nonumber\\
+\ddot{b} &=  \dfrac{6}{m}(f_a+f_c) - \dfrac{b}{L^{2}}  (\dfrac{6}{m}b^{T}(f_a+f_c)+\dot{b}^{T}\dot{b}) 
+\end{align}
+
+Some restriction are applied on the bar for example a length constraint as we assume that it does not change during over time
+\begin{align}
+C_L &= b^T b-L^2=0 \\
+\ddot{C_L} &= b^T \ddot{b}+\dot{b}^T \dot{b}=0 \\
+\end{align}
+
+The double integration on $\ddot{C_L}$ will diverge over time so stabilisation is proposed via Baugmarte stabilisation:
+
+\begin{align}
+\ddot{C_L} &= u_L = -K_{dL} \dot{C_L} - K_{pL} C_L \\
+\end{align}
+
+This term stabilization is a Proportional and Derivative control and if $K_{dL}$ and $K_{pL}$ are positive the $u_L$ is converge toward 0 (Differential equation of the second order).
+
+When computing $\ddot{b}$ ,the rotational dynamic, the only interesting elements of $f_a$ and $f_c$ are the components orthogonal to rod. Therefore when using  $f_a$ and $f_c$ in the computation of $\ddot{b}$  only the components orthogonal to $b$ will be kept.
+
+Another constraint is added for the fixed node of the cable at the position $n$
+
+\begin{align}
+C_n &= r -\frac{1}{2} \cdot b - n = 0 \nonumber \\
+\textnormal{It can be put under matricial form} \nonumber \\
+C_n &= W \cdot r + P\cdot b + N = 0 \nonumber  \\
+W &= I_{3\times3} \nonumber \\
+W &= -\frac{1}{2} \cdot I_{3\times3} \nonumber \\
+N &= -n \\
+\end{align}
+
+Then we need the constraint for each nodes, for the node between rod $i$ and $i+1$:
+
+\begin{align}
+C_c &=  r_i+ \frac{1}{2}  b_i +\frac{1}{2}  b_{i+1} - r_{i+1} =0 \\
+\end{align}
+
+Then the constraints are put in a matrix form to assemble all the node a the same time.
+
+\begin{align}
+q_1 &= [ r_1^T,~ ..., ~ r_N^T ]^T \nonumber \\
+q_2 &= [ b_1^T,~ ..., ~ b_N^T ]^T \nonumber \\
+C_{n1c} &= W_{n1c} \cdot r + P_{n1c}\cdot b + N_{n1c} = 0
+\end{align}
+
+
 %simulation cable longer
 \chapter*{Appendix 2}
 \addcontentsline{toc}{chapter}{Appendix 2}
 %use matlab
+\section*{How to use Matlab Codes}
+
+All Matlab codes are available at  \href{https://github.com/Elessog/PFE\_MATLAB}{https://github.com/Elessog/PFE\_MATLAB}.\\
+
+Then download databases at  \href{https://www.dropbox.com/sh/rxi1qrw2skyffge/AAAyLwLvpsNwcxGQiaa66Mcda?dl=0}{this dropbox folder}.
+
+To be able to read database you need to install a \href{https://github.com/kyamagu/matlab-sqlite3-driver}{driver} for sqlite3 database and follow its instruction to install it.
+
+Some function in DATABASE use \href{https://code.google.com/archive/p/googleearthtoolbox/}{googleearth toolbox} for Matlab to display data with Google Earth. You will need to add the folder to the path of your Matlab.\\
+In the folder DATABASE launch the file \textit{cut\_database2.m} and depending on the database select either
+downloaded from the Raspberry Pi or the web server. 
+
+This program will cut the database to period of time separated by at least 30 seconds to help make the difference between each run of the boat the data is saved as a Matlab \textit{.mat}.
+
+Then \textit{mat\_open\_subcat.m} will allow you to select yourself the part you want in the run:
+
+\begin{figure}[H]
+\centering
+    \includegraphics[scale=0.15,angle=0]{test_shorcut.png}
+    \caption*{GUI for selecting the subpart of a run.}
+    \label{fig:test_shorcut}
+\end{figure}
+
+The file \textit{mat\_open.m} display the data from the \textit{.mat} file.\\
+The file \textit{compare2.m} allow to compare waypoint by waypoint two different run.\\
+The file \textit{compare\_simu\_real.m} to compare the real run and a simulation one.\\
+
+
+In the folder cable2\_alone\_test\_data the file \textit{main\_ode.m}  take as input a real run and simulate
+a cable over the path taken by the boat. It is recommended to make a compiled version of \textit{boat\_simulation4.m} as a MEX file for the program to run faster:
+
+You need to open the Matlab Coder :
+\begin{lstlisting}[language=matlab]
+  $ mex -setup % to setup the compiler
+  $ coder % to start the application
+\end{lstlisting}
+
+Then define create a new projet, drag and drop the \textit{boat\_simulation4.m} file in the coder GUI and define input of the file, $t$ is a double and $y$ is a vertical array of double size Inf. The global variable need to be set to compile the file, therefore beforehand you need to start the main program (at least until before the call to the   \textit{boat\_simulation4} function (you can start everything and stop during the solving),then build the MEX file.
+
+In \textit{main\_ode.m} you can change the length of the cable, its weigh, number of rods ... \\
+
+
+In the folder boat\_alone\_with\_controller\_test\_data the file \textit{main\_ode.m}  take as input a real run and simulate
+a cable and boat over the waypoints taken in the real run with the same conditions of wind. \\
+
+
+In the folder IDEA\_CONTROLLER the file \textit{main\_ode.m}  will simulate the the boat with cable with a speed controller and \textit{main\_solo.m} is the same without the cable simulation.
+
+After a run it is good practice to save the current workspace as certain simulation are long and you may not want to restart them.
+
+
+
+
+
+
 \chapter*{Appendix 3}
 \addcontentsline{toc}{chapter}{Appendix 3}
-%use simulator get the info data
 
+\section*{How to get the source code of the \r{A}land Sailing Robot Project}
+
+
+Go to \href{www.sailingrobots.com}{www.sailingrobots.com} or directly to the  \href{https://github.com/AlandSailingRobots}{github account}. 
+
+To make the program function you only need two repository \textit{sailingrobot} and \textit{sailing\_simulator}. If you want to use a website display you will want the \textit{Remote-sailing-robot} repository to download inside a server (e.g.\ if you install xampp on your linux machine you will put the repository in the folder \textit{$\slash$opt$\slash$lampp$\slash$htdocs}) and after you set up the local database you will have access to your local website on \textit{localhost$\slash$Remote-sailing-robots$\slash$live$\slash$}.
 
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHIE

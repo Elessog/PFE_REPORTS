@@ -11,10 +11,10 @@ The current design of the code at the time of the creation of the simulator was 
 \input{model_com}
 }
 \caption{Data transfer model of the boat.}
-\label{fig:model_boat_}
+\label{fig:model_boat_com}
 \end{figure}
 
-As seen on~\ref{fig:model_boat_}, the data goes from and to the main program regulating the boat via three different mean of communication.
+As seen on~\ref{fig:model_boat_com}, the data goes from and to the main program regulating the boat via three different mean of communication.
 The sensor data comes from serial ports \gls{RS232} and \gls{i2c} communication and the program send data to the remote web server via \gls{TCPIP}. The simulator only need to deal with two of the communication path, \gls{i2c} and serial communication, as the web server will always be available. 
 
 \gls{linux} allow to create easily many virtual serial ports via programming but it is no possible to do the same for \gls{i2c} communication. To remediate at this problem the solution is to bypass function used by the main program to discuss with the I$^2$C bus. The program use a dynamic library (not compiled inside the program  and loaded in memory at runtime), functions can be overloaded if other functions with the same prototype (same name, same input parameters and same output) are loaded before. Then those function will communicate with the exterior of the program  with \gls{sharedmemory}.
