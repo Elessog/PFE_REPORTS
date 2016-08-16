@@ -43,7 +43,7 @@ In the end this simulator is useful as it help the programmer test quickly the c
 
 \section{Smith predictor}
 
-When testing a new controller, the algorihtm is not implemented in the main program but a remote program will take control of the boat via an xBee (see~\ref{fig:model_boat_com}) communicating with another xBee on a remote pc on the boat following the sailboat. The xBee is managed by LabView and allow using a Matlab script to compute the command to give to the sailboat.
+When testing a new controller, the algorithm is not implemented in the main program but a remote program will take control of the boat via an xBee (see~\ref{fig:model_boat_com}) communicating with another xBee on a remote pc on the boat following the sailboat. The xBee is managed by LabView and allow using a Matlab script to compute the command to give to the sailboat.
 
 This communication in the current state show a delay on the actuators around 2-3 seconds and can disturb the control algorithm .
 
@@ -58,3 +58,19 @@ To solve this problem the use of a Smith predictor (~\cite{smith1959controller})
 \caption{Model Smith predictor for the sailboat}
 \label{fig:smith_pred}
 \end{figure}
+
+The smith predictor (figure~\ref{fig:smith_pred}) is active on the value $x$, $y$ $\theta$  because  that is the value used by the controller. When controlling the real systems, alongside it we compute a model of the system and delay it the amount of the delay the real system seem to have. The present value is kept as the it will keep the value fed to the controller to diverge if the model is too far from reality.
+
+A delay is created inside a Matlab simulation and the Smith predictor implemented, the real part of simulation is updating via Runge-Kutta with a 0.01 step and the model part of the simulation is integrated via Euler with 0.1 step:
+
+\begin{figure}[H]
+\centering
+    \includegraphics[scale=0.5,angle=0]{smith_predictor_pos}
+    \caption{Position of the boat following a path with or without the smith predictor.}
+    \label{fig:smith_predictor_pos}
+\end{figure}
+
+
+In the simulation \footnote{To see simulations : \href{https://www.youtube.com/watch?v=P2E160nLPyo}{Smith predictor video https://www.youtube.com/watch?v=P2E160nLPyo}} the boat without Smith predictor is slower and less precise when following the lines.
+The smith predictor is effective here but, real test need to be done , to determine the efficiency of the model to predict the boat and the effect of time varying delay in the communication.
+

@@ -191,6 +191,49 @@ q_2 &= [ b_1^T,~ ..., ~ b_N^T ]^T \nonumber \\
 C_{n1c} &= W_{n1c} \cdot r + P_{n1c}\cdot b + N_{n1c} = 0
 \end{align}
 
+So here is a writing more straight forward than in~\cite{johansen2007modelling} for the fixed-free model:
+
+
+\begin{align}
+W_{a,n1c} &= \begin{bmatrix}
+    -I_{3\times3} & 0_{3\times3}&  \cdots & & 0_{3\times3} \\
+    0_{3\times3}&  -I_{3\times3} & 0_{3\times3}& \cdots & \vdots \\
+    \vdots & 0_{3\times3} & -I_{3\times3} & & \\
+     &  & \ddots & \ddots & 0_{3\times3} \\
+    0_{3\times3} &\cdots & & 0_{3\times3} & -I_{3\times3} \\
+\end{bmatrix}~ \in \mathbb{R}^{3(N-1)\times3N} \\
+W_{c,n1c} &=\begin{bmatrix}
+    0_{3\times3} &   \cdots & & & 0_{3\times3} \\
+    I_{3\times3}&  0_{3\times3} &  & & \vdots \\
+    0_{3\times3} & I_{3\times3} & 0_{3\times3} &  &  \\
+    \vdots & \ddots & \ddots & \ddots & \\
+    0_{3\times3} &\cdots & 0_{3\times3} & I_{3\times3} & 0_{3\times3}\\
+\end{bmatrix} ~ \in \mathbb{R}^{3(N-1)\times3N} \\
+W_{n1c} &=W_{a,n1c} + W_{c,n1c} ~ \in \mathbb{R}^{3(N-1)\times3N} \\
+P_{n1c} &= \frac{1}{2} \begin{bmatrix}
+    I_{3\times3} & 0_{3\times3}& 0_{3\times3}& \cdots & 0_{3\times3} \\
+    I_{3\times3}&  I_{3\times3} & \ddots &  & \vdots \\
+    \vdots & \ddots & \ddots & \ddots & 0_{3\times3} \\
+    0_{3\times3} &\cdots & 0_{3\times3} & I_{3\times3} & I_{3\times3}\\
+\end{bmatrix}~ \in \mathbb{R}^{3N\times3N} \\
+N_{n1c} &= \begin{bmatrix} n_1^T & 0 & \cdots & 0 \end{bmatrix}^T \in \mathbb{R}^{1\times3N}
+\end{align}
+
+
+\begin{align}
+\tau_1 &=  (f_a+f_c)/m\\
+\tau_2 &= \dfrac{6}{m}(f_a+f_c) - \dfrac{b}{||b||}  (K_{pL} (||b|| -L) + K_{dL} (\frac{\dot{b}^Tb}{||b||} - \dot{L}) + \nonumber \\ K_{iL} \displaystyle \int_{0}^{t} ||b|| - L \, \mathrm{d}t) \\
+\lambda_{const} &= (W_{n1c}W_{n1c}^T-6 P_{n1c}(W_{a,n1c}^T-W_{c,n1c}^T))^{-1} \nonumber \\
+\lambda_{n1c} &=  \lambda_{const} \cdot (W_{n1c} \tau_1 + P_{n1c} \tau_2 + \ddot{N}_{n1c} +K_{dC} \dot{C}_c + K_{pC} C_c )\\
+\tau_{c1} &= -W_{n1c} \lambda_{n1c} \\
+\tau_{c2} &= -6(W_{a,n1c}^T-W_{c,n1c}^T) \lambda_{n1c} \\
+\ddot{q_1} &= \tau_1 + \tau_{c1} \\
+\ddot{q_2} &= \tau_2 + \tau_{c2}
+\end{align}
+
+There is an inversion of matrix ($\lambda_{const}$) but it is only computed one time. 
+
+To compute the force you need to transform $\tau_{c1}$ from $\mathbb{R}^{1 \times 3N}$ to $\mathbb{R}^{3 \times N}$ and sum over the $N$ nodes.
 
 %simulation cable longer
 \chapter*{Appendix 2}
