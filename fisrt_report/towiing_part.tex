@@ -1,0 +1,37 @@
+% \usepackage[usenames,dvipsnames]{pstricks}
+% \usepackage{epsfig}
+% \usepackage{pst-grad} % For gradients
+% \usepackage{pst-plot} % For axes
+% \usepackage[space]{grffile} % For spaces in paths
+% \usepackage{etoolbox} % For spaces in paths
+% \makeatletter % For spaces in paths
+% \patchcmd\Gread@eps{\@inputcheck#1 }{\@inputcheck"#1"\relax}{}{}
+% \makeatother
+% % User Packages:
+% \usepackage{amsmath}
+% \usepackage{amsfonts}
+% \usepackage{amssymb}
+% \usepackage{algorithm}
+% \usepackage{algorithmic}
+\psscalebox{1.0 1.0} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-4.8360944)(8.174905,4.8360944)
+\definecolor{colour0}{rgb}{0.627451,0.627451,0.627451}
+\rput[bl](3.4018283,-4.1530995){{\LARGE $\theta$}}
+\psarc[linecolor=black, linewidth=0.04, linestyle=dashed, dash=0.17638889cm 0.10583334cm, dimen=outer, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(2.0692928,-4.7767463){1.16}{0.0}{58.991932}
+\psline[linecolor=black, linewidth=0.02](6.1092744,2.1137033)(1.9373444,-2.0582263)
+\psline[linecolor=black, linewidth=0.02](6.1092744,2.1066322)(4.6667767,-3.4229424)
+\psline[linecolor=black, linewidth=0.020657333](1.9376744,-2.044413)(4.6735187,-3.4226139)
+\psline[linecolor=colour0, linewidth=0.03, linestyle=dashed, dash=0.17638889cm 0.10583334cm](2.0717945,-4.8285418)(6.0484934,1.993816)
+\psline[linecolor=colour0, linewidth=0.03, linestyle=dashed, dash=0.17638889cm 0.10583334cm](2.0718498,-4.8046994)(8.246736,-4.8046994)
+\rput[bl](3.286168,0.2876867){{\LARGE $\alpha_c$}}
+\psarc[linecolor=black, linewidth=0.04, linestyle=dashed, dash=0.17638889cm 0.10583334cm, dimen=outer, showpoints=true, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(4.5058084,-0.6912639){1.0095239}{0.0}{170.77419}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(4.4715223,-0.6812639)(-0.088477574,0.07873606)
+\rput[bl](0.05616802,0.27768672){{\LARGE $g_c$}}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(4.478479,-0.7434378)(2.478479,-1.0043074)
+\rput[bl](0.9275473,-1.428531){{\LARGE $v_{cable}$}}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(6.1182303,2.0913448)(7.8039446,4.9056306)
+\rput[bl](7.686168,4.173401){{\LARGE $v$}}
+\end{pspicture}
+}
+

@@ -55,7 +55,6 @@
 \\
 \normalsize{$^{1}$ ENSTA Bretagne, France, elouan.autret@ensta-bretagne.org}\\\\\\\\\\\\\\\\
 \includegraphics[width = 40mm]{ensta-bretagne.png}
-%\vspace*{\fill}
 }
 \date{August 2016}
 
@@ -72,12 +71,35 @@
 %	PAGE DE GARDE
 %----------------------------------------------------------------------------------------
 \input{frontpage}
-
-
+\vspace*{\fill}
+\newpage
 %----------------------------------------------------------------------------------------
 %	SOMMAIRE
 %----------------------------------------------------------------------------------------
-\cleardoublepage  % pour commencer sur une page impaire
+%\cleardoublepage  % pour commencer sur une page impaire
+
+\section*{Abstract}
+
+\r{A}land University of Applied science is conducting a project, Marine Research Platform \r{A}land Sailing Robots, a small autonomous sailboat. One goal of the platform is the monitoring of harbour porpoise, Phocoena phocoena.
+
+The monitoring of the harbour porpoise is often done with Passive Acoustic Monitoring (PAM) and in order to get a good enough signal, the device need to be deep enough in the water. This report will evaluate the feasibility of putting a cable on a small 4 meters length sailboat, by creating a dynamic model of the ensemble cable boat, and via tests on the water. Data from the tests are compared to the simulations.
+
+\section*{Keywords}
+
+Sailboat, robot, autonomous, cable, marine, modelling, controller, sensor.
+
+
+\chapter*{Acknowledgement}
+%\addcontentsline{toc}{chapter}{Acknowledgement}
+
+I would like to thank my supervisor Mrs. Anna Friebe, project manager, for her investment in my work and her help in the good proceedings of it.
+
+I express my gratitude toward Mr. Matias Waller and Mr. Kjell Dahl for their help in the development of the model and the possibility to test it.
+
+I want also to thank all my colleagues in this internship for their companionship and their help. 
+
+Those persons helped make this internship really memorable.
+
 
 \tableofcontents  % Imprime le sommaire
 
@@ -106,7 +128,7 @@
 \input{viability_model}
 
 
-\chapter{Proposition of controller for cable  handling}
+\chapter{Proposition of controllers for cable handling}
 \input{controller_speed}
 
 
@@ -115,6 +137,16 @@
 
 \chapter*{Conclusion}
 \addcontentsline{toc}{part}{Conclusion}
+
+The modelling of a submerged cable has been done in three dimensions and is coherent with the pendulum model at equilibrium. A model for the sailboat has been also created to take into account the effect of the cable on the boat.
+During the sailing tests it has been seen that the cable simulation is close to what happen in real condition, but that the pendulum equation are close too, meaning that the pendulum equation can be used to directly control the boat with some precaution toward the depth error.
+
+The new sailboat simulation was not really needed within the context of the test, it may be more relevant with a heavier cable, or even something else, it could be used to simulate a sailboat towing another sailboat.
+
+Regarding the capacity of the 4 meters sailboat to carry a cable alongside him, it has been seen as possible with some regards to bad situation such as no wind and cable laying on the seabed.
+
+Some controllers have been proposed to regulate the speed of the boat but need testing to see if they are really applicable.
+
 %----------------------------------------------------------------------------------------
 
 %----------------------------------------------------------------------------------------
@@ -122,13 +154,14 @@
 %----------------------------------------------------------------------------------------
 {
 \printglossaries
-\addcontentsline{toc}{chapter}{Glossary}
+%\addcontentsline{toc}{chapter}{Glossary}
 }
 %\appendix
-\chapter*{Appendix 1}
+\chapter*{Appendix 1} 
 \addcontentsline{toc}{chapter}{Appendix 1}
-\section*{More on the RCM model}
+\label{chap:RCM_model}
 
+\section*{More on the RCM model} 
 As said before the model is based on the work of~\cite{johansen2007modelling} and the model fixed-free will be more explained in this Appendix.
 
 \begin{align}
@@ -162,9 +195,9 @@ The double integration on $\ddot{C_L}$ will diverge over time so stabilisation i
 \ddot{C_L} &= u_L = -K_{dL} \dot{C_L} - K_{pL} C_L \\
 \end{align}
 
-This term stabilization is a Proportional and Derivative control and if $K_{dL}$ and $K_{pL}$ are positive the $u_L$ is converge toward 0 (Differential equation of the second order).
+This term stabilization is a Proportional and Derivative control and if $K_{dL}$ and $K_{pL}$ are positive the $u_L$ is converging toward 0 (Differential equation of the second order).
 
-When computing $\ddot{b}$ ,the rotational dynamic, the only interesting elements of $f_a$ and $f_c$ are the components orthogonal to rod. Therefore when using  $f_a$ and $f_c$ in the computation of $\ddot{b}$  only the components orthogonal to $b$ will be kept.
+When computing $\ddot{b}$ ,the rotational dynamic, the only interesting elements of $f_a$ and $f_c$ are the components orthogonal to rod. Therefore, when using  $f_a$ and $f_c$ in the computation of $\ddot{b}$  only the components orthogonal to $b$ will be kept.
 
 Another constraint is added for the fixed node of the cable at the position $n$
 
@@ -183,7 +216,7 @@ Then we need the constraint for each nodes, for the node between rod $i$ and $i+
 C_c &=  r_i+ \frac{1}{2}  b_i +\frac{1}{2}  b_{i+1} - r_{i+1} =0 \\
 \end{align}
 
-Then the constraints are put in a matrix form to assemble all the node a the same time.
+Then the constraints are put in a matrix form to assemble all the node at the same time.
 
 \begin{align}
 q_1 &= [ r_1^T,~ ..., ~ r_N^T ]^T \nonumber \\
@@ -251,19 +284,19 @@ Some function in DATABASE use \href{https://code.google.com/archive/p/googleeart
 In the folder DATABASE launch the file \textit{cut\_database2.m} and depending on the database select either
 downloaded from the Raspberry Pi or the web server. 
 
-This program will cut the database to period of time separated by at least 30 seconds to help make the difference between each run of the boat the data is saved as a Matlab \textit{.mat}.
+This program will cut the database to period separated by at least 30 seconds to help make the difference between each run of the boat the data is saved as a Matlab \textit{.mat}.
 
 Then \textit{mat\_open\_subcat.m} will allow you to select yourself the part you want in the run:
 
 \begin{figure}[H]
 \centering
     \includegraphics[scale=0.15,angle=0]{test_shorcut.png}
-    \caption*{GUI for selecting the subpart of a run.}
+    \caption*{GUI for selecting the sub part of a run.}
     \label{fig:test_shorcut}
 \end{figure}
 
 The file \textit{mat\_open.m} display the data from the \textit{.mat} file.\\
-The file \textit{compare2.m} allow to compare waypoint by waypoint two different run.\\
+The file \textit{compare2.m} allow comparing waypoint by waypoint two different runs.\\
 The file \textit{compare\_simu\_real.m} to compare the real run and a simulation one.\\
 
 
@@ -276,7 +309,7 @@ You need to open the Matlab Coder :
   $ coder % to start the application
 \end{lstlisting}
 
-Then define create a new projet, drag and drop the \textit{boat\_simulation4.m} file in the coder GUI and define input of the file, $t$ is a double and $y$ is a vertical array of double size Inf. The global variable need to be set to compile the file, therefore beforehand you need to start the main program (at least until before the call to the   \textit{boat\_simulation4} function (you can start everything and stop during the solving),then build the MEX file.
+Then define create a new project, drag and drop the \textit{boat\_simulation4.m} file in the coder GUI and define input of the file, $t$ is a double and $y$ is a vertical array of double size Inf. The global variable need to be set to compile the file, therefore beforehand you need to start the main program (at least until before the call to the   \textit{boat\_simulation4} function (you can start everything and stop during the solving),then build the MEX file.
 
 In \textit{main\_ode.m} you can change the length of the cable, its weigh, number of rods ... \\
 
@@ -294,7 +327,7 @@ After a run it is good practice to save the current workspace as certain simulat
 \chapter*{Appendix 3}
 \addcontentsline{toc}{chapter}{Appendix 3}
 
-\section*{Work method on the Sailbot project}
+\section*{Work method on the Sailboat project}
 
 When not working on the cable simulation, I worked on the main project of 
 \r{A}land Sailing Robots thus the creation of the simulator for the C++ program, participation in the change of the architecture of the program, correcting some newly implemented  algorithm and also improving the database writing.
@@ -303,12 +336,12 @@ The method use by the group was the Agile method:
 \begin{figure}[H]
 \centering
     \includegraphics[scale=0.2,angle=0]{agile_method.png}
-    \caption*{Agile method (source wikipedia).}
+    \caption*{Agile method (source Wikipedia).}
 \end{figure}
 
 Agile method is separated  between sprints that last about a week or two, this iteration must add features or debug the code without breaking it, at the end of the sprint we always have a working software. A task in the sprint can go from the creation of a driver for a new hardware to investigation of problems on the boat. each task is given a number of half-day , the time it is supposed to take by man/hour.
 
-Each morning is held a short meeting,a scrum meeting, (every one standing up help shorten the meeting) where each person say what work he has done the day before and what he will be working on the present day. A scrum master is designed to conduct those meeting and and help the flow of the work if there is any problem.
+Each morning is held a short meeting,a scrum meeting, (every one standing up help shorten the meeting) where each person say what work he has done the day before and what he will be working on the present day. A scrum master is designed to conduct those meeting and help the flow of the work if there is any problem.
 
 In general this method was quit efficient with generally a sailing test at the end of the sprint to test the new implementations.
 
@@ -316,14 +349,14 @@ In general this method was quit efficient with generally a sailing test at the e
 
 
 \chapter*{Appendix 4}
-\addcontentsline{toc}{chapter}{Appendix 3}
+\addcontentsline{toc}{chapter}{Appendix 4}
 
 \section*{How to get the source code of the \r{A}land Sailing Robot Project}
 
 
 Go to \href{www.sailingrobots.com}{www.sailingrobots.com} or directly to the  \href{https://github.com/AlandSailingRobots}{github account}. 
 
-To make the program function you only need two repository \textit{sailingrobot} and \textit{sailing\_simulator}. If you want to use a website display you will want the \textit{Remote-sailing-robot} repository to download inside a server (e.g.\ if you install xampp on your linux machine you will put the repository in the folder \textit{$\slash$opt$\slash$lampp$\slash$htdocs}) and after you set up the local database you will have access to your local website on \textit{localhost$\slash$Remote-sailing-robots$\slash$live$\slash$}.
+To make the program function you only need two repository \textit{sailingrobot} and \textit{sailing\_simulator}. If you want to use a website display you will want the \textit{Remote-sailing-robot} repository to download inside a server (e.g.\ if you install xampp on your Linux machine you will put the repository in the folder \textit{$\slash$opt$\slash$lampp$\slash$htdocs}) and after you set up the local database you will have access to your local website on \textit{localhost$\slash$Remote-sailing-robots$\slash$live$\slash$}.
 
 %----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHIE

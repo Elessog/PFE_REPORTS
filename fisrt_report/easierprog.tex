@@ -1,6 +1,6 @@
-\section{Simulator for the C++ program} \label{sec:simulator}
+\section{Simulator for the C++ program}
 
-To help and create a faster development for the Sailing Robot project the creation of a simulator would be useful, in the testing of the \gls{C++} program used to control the boat. 
+To help create a faster development process, for the Sailing Robot project, the creation of a simulator would be useful, in the testing of the \gls{C++} program used to control the boat. 
 There is some simulator to test the algorithm and Matlab but the conversion from Matlab to C++ can induce some bugs that were not yet easy to identify.
 The current design of the code at the time of the creation of the simulator was too complicated and old to be able to simply implement the simulation in the code itself, therefore the easiest way to do it was to pre-empt the connection to the sensor needed to drive the boat.
 
@@ -14,10 +14,10 @@ The current design of the code at the time of the creation of the simulator was 
 \label{fig:model_boat_com}
 \end{figure}
 
-As seen on~\ref{fig:model_boat_com}, the data goes from and to the main program regulating the boat via three different mean of communication.
+As seen on~\ref{fig:model_boat_com}, the data goes from and to the main program regulating the boat via three different means of communication.
 The sensor data comes from serial ports \gls{RS232} and \gls{i2c} communication and the program send data to the remote web server via \gls{TCPIP}. The simulator only need to deal with two of the communication path, \gls{i2c} and serial communication, as the web server will always be available. 
 
-\gls{linux} allow to create easily many virtual serial ports via programming but it is no possible to do the same for \gls{i2c} communication. To remediate at this problem the solution is to bypass function used by the main program to discuss with the I$^2$C bus. The program use a dynamic library (not compiled inside the program  and loaded in memory at runtime), functions can be overloaded if other functions with the same prototype (same name, same input parameters and same output) are loaded before. Then those function will communicate with the exterior of the program  with \gls{sharedmemory}.
+\gls{linux} allow creating easily many virtual serial ports via programming but it is not possible to do the same for \gls{i2c} communication. To remedy at this problem the solution is to bypass function used by the main program to discuss with the I$^2$C bus. The program use a dynamic library (not compiled inside the program  and loaded in memory at runtime), functions can be overloaded if other functions with the same prototype (same name, same input parameters and same output) are loaded before. Then those function will communicate with the exterior of the program with \gls{sharedmemory}.
 
 \begin{figure}[H]
 \centering
@@ -34,10 +34,10 @@ The data transferred between the simulator and the side program are raw values, 
 then transform the data for serial port as the real sensor messages, e.g.\ \gls{NMEA} messages for the GPS and 
 wind sensor.
 
-The main program was then refactor to a node and message program, meaning each sensor is a node sending messages to the node that will compute the orders to give to the actuators. The program created before work without changes on this model, but to follow the model of the program a simulation as been created , the node directly send the messages inside the program and is still discussing with the simulator with \gls{TCPIP}.
+The main program was then refactor to a node and message program, meaning each sensor is a node sending messages to the node that will compute the orders to give to the actuators. The program created before work without changes on this model, but to follow the model of the program a simulation as been created, the node directly send the messages inside the program and is still discussing with the simulator with \gls{TCPIP}.
 The advantage of this simulation is a simpler initialisation but the first implementation still has some assets such as allowing testing different preprocessing of data (filters).
 
-In the end this simulator is useful as it help the programmer test quickly the code and the implementation of the algorithm without doing real test, this should make the people gain a lot of time.
+In the end this simulator is useful as it helps the programmer test quickly the code and the implementation of the algorithm without doing real test, this should make the people gain a high amount of time.
 
 
 
@@ -45,7 +45,7 @@ In the end this simulator is useful as it help the programmer test quickly the c
 
 When testing a new controller, the algorithm is not implemented in the main program but a remote program will take control of the boat via an xBee (see~\ref{fig:model_boat_com}) communicating with another xBee on a remote pc on the boat following the sailboat. The xBee is managed by LabView and allow using a Matlab script to compute the command to give to the sailboat.
 
-This communication in the current state show a delay on the actuators around 2-3 seconds and can disturb the control algorithm .
+This communication in the current state show a delay on the actuators around 2-3 seconds and can disturb the control algorithm.
 
 To solve this problem the use of a Smith predictor (~\cite{smith1959controller}) is proposed :
 

@@ -1,9 +1,9 @@
- The cable for survey operation need to be under a certain depth,from ~\ref{fig:depth_length_speed_pendulum} it can be seen that extend the length of the cable dynamically during the survey will not help because at higher speed the end of the cable reach quickly the surface level. Mass can be added to ensure depth until a certain speed, following ~\ref{fig:depth_mass_speed_pendulum} a cable mass of 9 kilogrammes would ensure a depth of 5 meters for a cable length of 10 meters until 1.5 meters per second.
+ The cable for survey operation need to be under a certain depth, from ~\ref{fig:depth_length_speed_pendulum} it can be seen that extend the length of the cable dynamically during the survey will not help because at higher speed the end of the cable reach quickly the surface level. Mass can be added to ensure depth until a certain speed, following ~\ref{fig:depth_mass_speed_pendulum} a cable mass of 9 kilogrammes would ensure a depth of 5 meters for a cable length of 10 meters until 1.5 meters per second.
 
 But to have in general the same depth during a survey the speed of the boat need to be controlled and remain steady. 
 
-One  way to do it be the handling of the sail and using the water resistance to slow down the boat but for this to work would me a perfect sail that wouldn't give any speed when the sail are trimmed in tightly (in ~\ref{fig:drawing_boat_ink} $\delta_s~=~0$).
-   Some command can be send to the rudder to make the boat jiggle and lose speed.
+One way to do it is to change the handling of the sail and using the water resistance to slow down the boat but for this to work would me a perfect sail that wouldn't give any speed when the sail are trimmed in tightly (in ~\ref{fig:drawing_boat_ink} $\delta_s~=~0$).
+ Some command can be send to the rudder to make the boat jiggle and lose speed.
  
 Some iteration have been made on the design of a controller: 
  
@@ -88,7 +88,7 @@ Using the rudder to slow down the boat is does not seem to be an efficient idea 
     \end{minipage}
 \end{figure}
 
-The PID controller does not completely solve the problem of the the algorithm~\ref{alg:breakAlg1}, the error of the path taken by the boat is reduce boat  it still seems to have an offset (~\ref{fig:algo2Path}). This also induce oscillation that may not be good for the measurement on a survey.
+The PID controller does not completely solve the problem of the algorithm~\ref{alg:breakAlg1}, the error of the path taken by the boat is reduced but it still seems to have an offset (~\ref{fig:algo2Path}). This also induce oscillation on the cable that may not be good for the measurement on a survey.
 
 The following algorithm is a modified version of a proportional controller as there is no derivative or integral term but the output is not, see~\ref{fig:responAlgo3} for the profile of the sail command depending on the speed error.
 
@@ -141,14 +141,14 @@ The following algorithm is a modified version of a proportional controller as th
     \end{minipage}
 \end{figure}
 
-The algorithm~\ref{alg:breakAlg3} seems to be working on simulation, but suppose that when $\delta_s = 0$ the wind does not have any effect on the boat. But in general the main sail in itself is not rigid therefore the wind will still have an effect on the boat. They also have a front sail which is not controlled and will make the boat go forward. If these two non controllable are more powerful than the friction of the water then the boat will not be able to slow down to the right speed with only the control of the sail.
+The algorithm~\ref{alg:breakAlg3} seems to be working on simulation, but suppose that when $\delta_s = 0$ the wind does not have any effect on the boat. But in general the main sail in itself is not rigid therefore the wind will still have an effect on the boat. They also have a front sail which is not controlled and will make the boat go forward. If these two non controllable forces are more powerful than the friction of the water then the boat will not be able to slow down to the right speed with only the control of the sail.
 
 A solution to resolve this problem would to put weight on the cable so that the minimal speed increases (see~\ref{fig:depth_length_speed_pendulum}), adding length to the cable would not help on normal speed superior to 1 meter per second.
 
 
-An another solution would be to add to the boat a device that would counter the effect of the front sail and the remaining of the main sail. Something simple as board placed to slow down , the surface of this board could be computed to match the push created by the sails.
+Another solution would be to add to the boat a device that would counter the effect of the front sail and the remaining of the main sail. Something simple as board placed to slow down , the surface of this board could be computed to match the push created by the sails.
  
-A more advance solution would be to have controllable flap as some foiling boat could have but without  making the boat go up or down.The effect need to be symmetric to the horizontal line :
+A more advance solution would be to have controllable flap as some foiling boat could have but without  making the boat go up or down. The effect need to be symmetric to the horizontal line :
 
 \begin{figure}[H]
 \centering

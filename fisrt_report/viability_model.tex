@@ -1,12 +1,10 @@
 To test the model, a cable with a pressure sensor has been put on the boat in order to capture the behaviour of the cable.
 
-
-
 \section*{Boat specification}
 
-The boat is a retrofitted version of the model Mini-12 and can be consider of the 2.4mR-class by the International Sailing Federation meaning is length is around 4 meters. It weigh around 300 kg.
+The boat is a retrofitted version of the model Mini-12 and can be consider of the 2.4mR-class by the International Sailing Federation meaning is length is around 4 meters. It weighs around 300 kg.
 
-To proceed to the measurement of the cable depth, a pressure sensor has been added and also an Arduino  Uno as  Analog to digital converter and send the sensor data to the computing unit a Raspberry Pi 3 Model B.
+To proceed to the measurement of the cable depth, a pressure sensor has been added and also an Arduino  Uno as Analog to digital converter and send the sensor data to the computing unit a Raspberry Pi 3 Model B.
 
 \begin{figure}[H]
 \centering
@@ -48,13 +46,13 @@ The Raspberry Pi is running Arch Linux and the program controlling the boat is w
 
 \section{Test process}
 
-First the gathered data will be compared with the old model to see if the new one add any advantage in the design of controller.It is not certain to see a lot a differences between the similarity of each model of the boat to the real test, as said before the model does not take into account the roll of the boat , this can change the expected value of the pressure sensor.
+First the gathered data will be compared with the old model to see if the new one add any advantage in the design of controller. It is not certain to see a lot of differences between the similarity of each model of the boat to the real test, as said before the model does not take into account the roll of the boat, this can change the expected value of the pressure sensor.
 
  The goal is to determine is the simulation of the cable is usable and to see if the new model of the boat will be useful in the conception of new controller handling the cable. 
  
  The test procedure is quite simple
  
-\begin{itemize}
+\begin{itemize}[label=$-$,itemsep=0cm,topsep=0cm]
 \item Cable added on the hull of the boat (between 6 and 20 m) with a linear mass of 130 g/m
 \item Tapping a pressure sensor on the cable, the length of the cable attached to the pressure sensor is 6 meters
 \item Boat has to reach multiple waypoints while measuring the depth of the pressure sensor
@@ -102,12 +100,12 @@ First the depth of the pressure sensor will be compared to the depth of the simu
     \end{minipage}
 \end{figure}
 
-To simulate the run of the boat with the simulation of the cable , the \gls{GPS} position data from the run is taken and filtered, and then feed to the simulator, the cable consider the positions as a fixed point of the cable.
+To simulate the run of the boat with the simulation of the cable, the \gls{GPS} position data from the run is taken and filtered, and then feed to the simulator, the cable consider the positions as a fixed point of the cable.
 
 The figure~\ref{fig:comp_depth_time_2007} hold three profile of depth, the real test, the depth computed by simulation and one computed with the formula from~\ref{equ_theta_1}. The first conclusion is that the depth of the cable in the test is similar to the simulation and the profile from the pendulum model too.
  In the same way the profile of depth over speed is also close between test and simulation.
  
- The simulation has an mean offset off 34 cm and the pendulum  43 cm so if we consider the simulation close enough we can consider also the pendulum to be close enough as way to predict the depth of the cable at a certain speed.
+ The simulation has an mean offset off 34 cm and the pendulum 43 cm so if we consider the simulation close enough we can consider also the pendulum to be close enough as way to predict the depth of the cable at a certain speed.
  
  \begin{figure}[H]
 \centering
@@ -135,14 +133,21 @@ In the simulation runs represented in~\ref{fig:comp_w_cable_3006} and~\ref{fig:c
     \label{fig:comp_run_306}
 \end{figure}
 
-The figure ~\ref{fig:comp_w_cable_3006} compare the speed,heading of the boat and the direction and speed of the wind between a run with the cable and a run without it. The most interesting part is between the waypoints 4 and 7 ( the value at 4 represent the mean value between the waypoints 4 and 5)  because the boat have the same mean heading. At the point 4 the speed of the boat without cable is greater than the speed of the boat without cable however the wind speed is also bigger than the run without cable so we can't conclude that the cable slow down the boat. And at the point 6 the situation is quite odd as the speed of the boat with cable is faster 
+The figure ~\ref{fig:comp_w_cable_3006} compares the speed, heading of the boat and the direction and speed of the wind between a run with the cable and a run without it. The most interesting part is between the waypoints 4 and 7 ( the value at 4 represent the mean value between the waypoints 4 and 5)  because the boat have the same mean heading. At the point 4 the speed of the boat without cable is greater than the speed of the boat without cable however the wind speed is also bigger than the run without cable so we can't conclude that the cable slow down the boat. And at the point 6 the situation is quite odd as the speed of the boat with cable is faster 
 even though the wind speed during its run is smaller.
 
 When considering the path of the boat during the simulations runs it is really similar and may change only because of the wind effect.
 
-Considering this it can be supposed that the cable has a little effect on the boat and even in the simulation the differences are not big enough to make the design of a controller require its own model, as long as the cable remains relatively lightweight.
-	
-
-\subsection*{Practical Consideration}
+Considering this it can be supposed that the cable has a little effect on the boat and even in the simulation the differences are not big enough to make the design of a controller require its own model, as long as the cable remains relatively lightweight.\\
+ 
+During the test realised with the sailboat some remarks have been made:
 
  
+ \begin{itemize}[label=$-$,itemsep=0cm,topsep=0cm]
+\item  The position of the cable just behind the keel is the advantageous as the momentum almost null, therefore the effect of the cable on the rotation of the boat is minimal
+\item The cable doesn't seem to block the rudder from moving.
+\item If there is almost no wind and the cable is long enough to touch the seabed then the boat can get stuck.
+\end{itemize}
+
+After the tests it can be said the sailboat is able to carry the cable and do autonomous mission with it.
+

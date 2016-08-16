@@ -1,5 +1,5 @@
-The choice of rods to model the cable was done because it seemed to be the simpler
-way to get a good cable behaviour.
+The choice of rods to model the cable is compromise between simplicity of model and how close it is to the real cable.
+
 \section{Rod Cable Model}
 
 The present model is developed using the work by Vegar Johansen PhD thesis~\cite{johansen2007modelling} as a basis, in this model the rods are modelled by vectors and centres of gravity and allows the application of different forces on the cable, in this model the fluid friction is added.
@@ -29,7 +29,7 @@ b &= \begin{bmatrix}
 \end{bmatrix}\, \textnormal{is the vector for the rod orientation}
 \end{align}
 
-The forces acting on the cable are applied on the ends of each rods, meaning for example, the gravity force would be split in two forces acting on each side of the bar. Leading to the base formulas where a and c are the extremity of the bar ,  $f_X$ is the force applying at the point $X$ and $L$ is the length of the rod :
+The forces acting on the cable are applied on the ends of each rods, meaning for example, the gravity force would be split in two forces acting on each side of the bar. Leading to the base formulas where a and c are the extremity of the bar, $f_X$ is the force applying at the point $X$ and $L$ is the length of the rod :
 
 \begin{align}
 \ddot{r} &= \dfrac{1}{m}  (f_a+f_c) \\
@@ -38,24 +38,28 @@ The forces acting on the cable are applied on the ends of each rods, meaning for
 
 
 
-Then the model adds the use of the Baumgarte stabilization constraint~\cite{baumgarte1972stabilization} to respect the physical constraint on the bar , length and position of fixed points if there is, thus changing the precedent equation. 
+Then the model adds the use of the Baumgarte stabilization constraint~\cite{baumgarte1972stabilization} to respect the physical constraint on the bar , length and position of fixed points if there is, thus changing the precedent equation(see Appendix \ref{chap:RCM_model}). 
 The stabilization technique is a PID method therefore it depends on coefficient parameters, in a variable-step solver augmenting the P an D coefficient improve the simulation but will increase the time needed to do the simulation.
 
 Johansen proposes three scenarios for this model, a free cable, a fixed-free scenario where one side of the cable is attached to a point and the last one is a fixed-fixed where both side are attached to points.
 The model interesting for the modelling of the sailboat towing a cable is the fixed-free scenario where the attachment point is the boat.
 
-Applying force on each rod are the gravity, Archimedes principle and the fluid friction, for the rod $n$ :
+The external forces acting on each of the rods of the cable model are the gravitational force ($\vec{P}$) and the fluid friction ($\vec{f}_{fluid}$) and the Archimedes principle ($\vec{\Pi}$), each rod is considered a cylinder : for the rod $n$ :
 
 {
 \begin{align}
-\centering
-F_{fluid~n,a,x} &= -\frac{C_D (2 r ) \rho}{2} \cdot \displaystyle \int_{0}^{L/2} v_{a,x}(l)^2 \cdot \frac{2l}{L} \, \mathrm{d}l\ \nonumber \\
+\begin{split}
+\vec{P} &= m \vec{g}  \\
+F_{fluid~n,a,x} &= -\frac{C_D (2 r ) \rho}{2} \cdot \displaystyle \int_{0}^{L/2} v_{a,x}(l)^2 \cdot \frac{2l}{L} \, \mathrm{d}l\  \\
 \vec{v_{a}}(l) &= \vec{\dot{r_n}} - \frac{2 l}{L} \cdot \vec{b_n} \times \frac{\vec{\dot{b_n}}}{L} \nonumber \\
-\vec{v_{c}}(l) &= \vec{\dot{r_n}} + \frac{2 l}{L} \cdot \vec{b_n} \times \frac{\vec{\dot{b_n}}}{L}
+\vec{v_{c}}(l) &= \vec{\dot{r_n}} + \frac{2 l}{L} \cdot \vec{b_n} \times \frac{\vec{\dot{b_n}}}{L} \nonumber\\
+\vec{\Pi} &= - \rho \pi L r^2 \vec{g} \label{equ_archi}
+\end{split}
 \end{align}
 }
+In~\ref{equ_archi}  $S$  it the surface of the cable and $C_D$ the drag coefficient for a cylinder, $\rho$ the density of the fluid, $r$ is the radius of the cable , $L$ the length of the rod.
 
-The term $\frac{2 l }{L}$ in the integral part is there to compensate the lever effect when applying this force on the extremity of the rod.
+The term $\frac{2 l}{L}$ in the integral part is there to compensate the lever effect when applying this force on the extremity of the rod.
 
 
 
@@ -76,10 +80,10 @@ The term $\frac{2 l }{L}$ in the integral part is there to compensate the lever 
     \end{minipage}
 \end{figure}
 
-By doing simulation with this model, the profile of the angle of the cable over speed is the same as in the Simulink model and the same can be done for the reaction of the cable on the boat, an constant for the vertical reaction and a linear decrease for the horizontal reaction dependant on the fluid friction force.
+In figure~\ref{fig:depthIndSpeed} is represented the angle of the cable to the vertical depending of the speed of the boat when the system is stabilized. The curve follows the equation \label{equ_theta_1}.
+It means beyond a certain velocity the cable will be useless due to be not enough submerged and horizontal. The simulation at equilibrium respect the equation of the pendulum.
 
-
-In this model each rod can have a different length and mass:
+In figure~\ref{fig:forceIndSpeed} is the reaction of the cable on the boat, a constant for the vertical reaction and a decrease following a square law for the horizontal reaction dependent on the fluid friction force.
 
 
 \begin{figure}[H]
@@ -104,9 +108,9 @@ In this model each rod can have a different length and mass:
  \label{equ_Stab}
 \end{equation}
 
-In figure~\ref{fig:massForce} is represented the force of the cable on the boat once stabilized and depending of the mass of the last rod. The horizontal force is constant over mass, this is logical as when stabilized mass does not appear in the horizontal part of the equation \eqref{equ_Stab}. And as for the vertical reaction it vary linearly with the mass,thus corresponding to the precedent equation on the z axis.
+In figure~\ref{fig:massForce} is represented the force of the cable on the boat once stabilized and depending of the mass of the last rod. The horizontal force is constant over mass, this is logical as when stabilized mass does not appear in the horizontal part of the equation \eqref{equ_Stab}. And as for the vertical reaction it varies linearly with the mass, thus corresponding to the precedent equation on the vertical axis.
 
-Changing the linear mass or the mass of the last rod have different effect on the final angle of the cable(see~\ref{fig:linmassAngle}).
+Changing the linear mass or the mass of the last rod have different effect on the final angle of the cable(see~\ref{fig:linmassAngle}), the errors can be reduced by changing the coefficient of the Baugmarte stabilization but it will influence on the computation time when using a variable-step solver.
 
 This model include a tolerance to errors which are resolved by the Baumgarte stabilisation technique but there still some left over:
 
@@ -123,4 +127,4 @@ In the figure~\ref{fig:errorLRod} the error in length reach a maximum around one
 To simulate this model there is more than one options, but to not make it diverge tweaking must be made.
 If using a fixed-step size integration (Runge-Kutta) the step need to be $\sim\mathcal{O}(10^{-3})$, it is the limit of this method and if the cable endure big acceleration it will diverge.
 
-With an solver with variable step-size (ODE45) the result will be in general more accurate but the computation time became very high needing more than one second to compute one second of simulation.If possible Matlab coder should be used to help improve the computation time.
+With a solver with variable step-size (ODE45) the result will be in general more accurate but the computation time became very high needing more than one second to compute one second of simulation.If possible Matlab coder should be used to help improve the computation time.

@@ -1,12 +1,11 @@
- \section{Cable}
+\section{Cable}
  
- It exist a certain number of different method to simulate a cable from finite elements to lumped mass
+ It exists a certain number of different method to simulate a cable from finite elements to lumped mass
  with different implementations in each cases.
  
 \subsubsection*{The simplest model}
 
-If the cable is taken as a simple pendulum (lumped mass) of mass $m$ and length $l$ when the towed is at a constant speed 
-and constant heading, the equilibrium state is researched.
+If the cable is taken as a simple pendulum (lumped mass) of mass $m$ and length $l$ when the boat is towed at a constant speed and constant heading, the equilibrium state of the pendulum is researched.
 
 
 \begin{figure}[H]
@@ -47,14 +46,14 @@ If~\ref{equ_Stab_1} is projected on $\vec{u_{\theta}}$ to get rid off the unknow
  \label{equ_Stab_2}
 \end{equation}
 
-Thus the angle $\theta$ can be found if the cable is more heavy enough ($m -l \rho \pi r^2 > 0)$ i.e.\ the cable is more dense than the fluid otherwise the cable should be always on the surface:
+Thus, the angle $\theta$ can be found if the cable is more heavy enough ($m -l \rho \pi r^2 > 0)$ i.e.\ the cable is more dense than the fluid otherwise the cable should be always on the surface:
 
 \begin{equation}
  \theta = \arctan(\frac{C_D l 2 r \rho}{2 g \cdot (m - l \rho \pi r^2)} \cdot v_c^2)\\
  \label{equ_theta_1}
  \end{equation}
  
-With this formula the depth of the end of the pendulum can be computed with different parameters, linear mass of the cable \ref{fig:depth_mass_speed_pendulum}  or the length of the cable depending 
+With this formula the depth of the end of the pendulum can be computed with different parameters, linear mass of the cable \ref{fig:depth_mass_speed_pendulum} or the length of the cable depending 
  
  \begin{figure}[H]
 \centering
@@ -84,16 +83,23 @@ With this formula the depth of the end of the pendulum can be computed with diff
 {
 \input{finite_element}
 }
-    \caption{Representation of a finite elements (see~\cite{obligado2013experimental}).}
+    \caption{Representation of a finite element (see~\cite{obligado2013experimental}).}
     \label{fig:finite_elem}
 \end{figure}
 
-In general this method is heavy on computational resources due to matrix inversion at each step to compute the solution.
+The boundaries condition are set $T(l) = - T((l-dl) +dl)$ and assemble in a matrix equation of the form :
+
+\begin{align*}
+\mathbf{A}\times\mathbf{X} &= \mathbf{F}+ \mathbf{S}
+\end{align*}
+
+In order to solve this equation, a matrix inverse has to be computed thus augmenting the computation time
+of the solution.
  
  
 \subsubsection*{Lumped mass}
  
-The cabled is divided in in a certain number of and each segment can be viewed as a mass damped spring system, 
+The cabled is divided in a certain number of and each segment can be viewed as a mass damped spring system, 
 the spring is to simulate elongation of the cable in some cases:
 
 \begin{figure}[H]
@@ -107,7 +113,7 @@ This model is in general faster to execute because of it does note need the comp
  
 \section{Sailboat model}
 
-The model of the sailboat come from~\cite{Melin2016} a modified version of the model in~\cite{LeBars2013}.
+It exists up to 6 Degree Of Freedom models for sailboat, however the end goal of the model is to determine the feasibility and development of control algorithm specialise for the cable handling. The model for sailbot is a 3 degree of freedom  from~\cite{Melin2016} a modified version of the model in~\cite{LeBars2013}.
 
 
 
@@ -173,7 +179,7 @@ $a_{tw}$ is the true wind speed and $\psi_{tw}$ its direction in the world frame
 and $a_{aw}$ is the apparent wind speed on the boat and $\psi_{aw}$ the direction of the apparent wind in the boat frame.\\
 \begin{minipage}{\linewidth}
 \centering
-\captionof{table}{Parameters correspondance} \label{tab:title2} 
+\captionof{table}{Parameters correspondence} \label{tab:title2} 
 \begin{center}
 \begin{tabular}[t]{|c|l|l|}%{|m{0.10\linewidth}|m{0.3\linewidth}|m{0.1\linewidth}|}
 \hline
