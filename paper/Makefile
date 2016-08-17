@@ -1,6 +1,6 @@
 
 PROJECT=simulation_report
-TEX=pdflatex
+TEX=xelatex
 BIBTEX=bibtex
 MKINDEX=makeindex
 MKGLOSSARY=makeglossaries

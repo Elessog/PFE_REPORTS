@@ -1,0 +1,34 @@
+% \usepackage[usenames,dvipsnames]{pstricks}
+% \usepackage{epsfig}
+% \usepackage{pst-grad} % For gradients
+% \usepackage{pst-plot} % For axes
+% \usepackage[space]{grffile} % For spaces in paths
+% \usepackage{etoolbox} % For spaces in paths
+% \makeatletter % For spaces in paths
+% \patchcmd\Gread@eps{\@inputcheck#1 }{\@inputcheck"#1"\relax}{}{}
+% \makeatother
+% % User Packages:
+% \usepackage{amsmath}
+% \usepackage{amsfonts}
+% \usepackage{amssymb}
+% \usepackage{algorithm}
+% \usepackage{algorithmic}
+% 
+\psscalebox{1.0 1.0} % Change this value to rescale the drawing.
+{
+\begin{pspicture}(0,-2.4740124)(6.1989417,2.4740124)
+\definecolor{colour0}{rgb}{0.50980395,0.50980395,0.50980395}
+\rput(0.025257645,-2.4567273){\psaxes[linecolor=black, linewidth=0.04, tickstyle=top, axesstyle=axes, labels=none, ticks=none, dx=1.0cm, dy=1.0cm]{->}(0,0)(0,0)(2,2)}
+\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(0.018941855,-2.456201)(1.1663103,-1.6140957)
+\psline[linecolor=black, linewidth=0.04, dotsize=0.07055555cm 2.0]{*-*}(3.092626,2.270115)(4.2399945,-0.43514836)
+\psline[linecolor=colour0, linewidth=0.02, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(0.00841554,-2.456201)(3.0189419,2.2280095)
+\psline[linecolor=colour0, linewidth=0.02, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(0.039994486,-2.4456747)(4.1663103,-0.47725362)
+\psline[linecolor=colour0, linewidth=0.02, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(0.039994486,-2.4667273)(3.6505208,0.9332727)
+\rput[bl](3.861047,0.90169376){$r$}
+\rput[bl](3.6189418,-0.96146417){$c$}
+\rput[bl](2.1663103,1.6174833){$a$}
+\psline[linecolor=black, linewidth=0.02, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(4.1978893,2.4701147)(5.3452578,-0.23514834)
+\rput[bl](4.818942,1.4385358){$b = c-a$}
+\end{pspicture}
+}
+
